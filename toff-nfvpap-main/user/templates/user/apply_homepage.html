@@ -1,0 +1,81 @@
+{% extends "user/base.html" %}
+{% block content %} 
+<div class="w-full min-h-[80vh] bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-4  " >
+  <div class="py-6 px-10 w-full justify-center grid">
+    <div class="">
+        <a href="/">
+            <p class="font-semibold md:text-4xl text-2xl text-right">
+                非漁船進出第一類漁港<br class="md:hidden">停泊申請平台
+            </p>
+        </a>
+    </div>
+    <div class="bg-teal-500 p-4 mt-4 rounded-lg max-w-xl">
+        <span class="text-left text-white text-2xl font-bold">
+            最新公告
+        </span>
+        <button type="button" onclick="location.href='/user/news-list';" class="md:ml-96 ml-20 w-12 rounded-lg p-1 bg-gray-400 text-white text-md font-semibold">
+            <p class="text-sm">更多</p>
+        </button>
+        <hr class="border-none h-0.5 bg-white mt-2 mb-4">
+        <div class="text-white grid md:grid-cols-12 grid-cols-2 gap-2">
+            <span class="md:col-span-2 col-span-1">2022/11/24</span> 
+            <span class="md:col-span-2 col-span-1 bg-gray-500 rounded-lg p-1 h-8 -mt-1 inline-flex justify-center">公告類型</span>
+            <sapn class="md:col-span-8 col-span-2 whitespace-normal">
+                <a href="/user/new">非漁船進出第一類漁港停泊申請平台之公告測試測試測試測試測試測試測試測試測試試測試測</a>
+            </span>
+        </div>
+        <hr class="border-dashed mt-3 mb-3">
+        <div class="text-white grid md:grid-cols-12 grid-cols-2 gap-2">
+            <span class="md:col-span-2 col-span-1">2022/11/24</span> 
+            <span class="md:col-span-2 col-span-1 bg-purple-500 rounded-lg p-1 h-8 -mt-1 inline-flex justify-center">公告類型2</span>
+            <sapn class="md:col-span-8 col-span-2 whitespace-normal">
+                非漁船進出第一類漁港停泊申請平台之公告測試2
+            </span>
+        </div>
+        <hr class="border-dashed mt-3 mb-3">
+        <div class="text-white grid md:grid-cols-12 grid-cols-2 gap-2">
+            <span class="md:col-span-2 col-span-1">2022/11/24</span> 
+            <span class="md:col-span-2 col-span-1 bg-orange-500 rounded-lg p-1 h-8 -mt-1 inline-flex justify-center">公告類型3</span>
+            <sapn class="md:col-span-8 col-span-2 whitespace-normal">
+                非漁船進出第一類漁港停泊申請平台之公告測試3
+            </span>
+        </div>
+        <hr class="border-dashed mt-3 mb-3">
+    </div>
+    <div class="grid grid-cols-3 gap-2 max-w-xl mt-6">
+        <div class="flex items-center mb-4 md:col-span-1 col-span-3">
+            <button type="button" onclick="location.href='/parking/apply';" class="rounded-lg p-8 w-full bg-gradient-to-r from-sky-600 to-teal-300 text-white text-lg font-semibold">
+                <p class="text-2xl">停泊申請</p>
+            </button>
+        </div>
+        <div class="flex items-center mb-4  md:col-span-1 col-span-3">
+            <button type="button" onclick="location.href='/parking/history';" class="rounded-lg p-8 w-full bg-gradient-to-r from-sky-600 to-teal-300 text-white text-lg font-semibold">
+                <p class="text-2xl">查詢及繳費</p>
+            </button>
+        </div>
+        <div class="flex items-center mb-4  md:col-span-1 col-span-3">
+            <button type="button" onclick="location.href='/parking/parkings';" class="rounded-lg p-8 w-full bg-gradient-to-r from-pink-500 to-pink-300 text-white text-lg font-semibold">
+                <p class="text-2xl">停泊管理</p>
+            </button>
+        </div>
+        <div class="flex items-center mb-4  md:col-span-1 col-span-3">
+            <button type="button" onclick="location.href='/parking/apply';" class="rounded-lg p-8 w-full bg-gradient-to-r from-pink-500 to-pink-300 text-white text-lg font-semibold">
+                <p class="text-2xl">紙本建單</p>
+            </button>
+        </div>
+        <div class="flex items-center mb-4  md:col-span-1 col-span-3">
+            <button type="button" onclick="location.href='/parking/statistics';" class="rounded-lg p-8 w-full bg-gradient-to-r from-pink-500 to-pink-300 text-white text-lg font-semibold">
+                <p class="text-2xl">進出港統計</p>
+            </button>
+        </div>
+        <div class="flex items-center mb-4  md:col-span-1 col-span-3">
+            <button type="button" onclick="location.href='/parking/news-list';" class="rounded-lg p-8 w-full bg-gradient-to-r from-pink-500 to-pink-300 text-white text-lg font-semibold">
+                <p class="text-2xl">編輯公告</p>
+            </button>
+        </div>
+    </div>
+  </div>
+</div>
+     
+{% endblock content %}
+

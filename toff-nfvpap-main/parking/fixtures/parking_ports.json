@@ -1,0 +1,134 @@
+[
+  {
+    "model": "parking.county",
+    "pk": 1,
+    "fields": {
+      "name": "基隆市"
+    }
+  },{
+    "model": "parking.county",
+    "pk": 2,
+    "fields": {
+      "name": "宜蘭縣"
+    }
+  },{
+    "model": "parking.county",
+    "pk": 3,
+    "fields": {
+      "name": "新竹市"
+    }
+  },{
+    "model": "parking.county",
+    "pk": 4,
+    "fields": {
+      "name": "台中市"
+    }
+  },{
+    "model": "parking.county",
+    "pk": 5,
+    "fields": {
+      "name": "台南市"
+    }
+  },{
+    "model": "parking.county",
+    "pk": 6,
+    "fields": {
+      "name": "高雄市"
+    }
+  },{
+    "model": "parking.county",
+    "pk": 7,
+    "fields": {
+      "name": "屏東縣"
+    }
+  },{
+    "model": "parking.port",
+    "pk": 1,
+    "fields": {
+      "name": "八斗子漁港",
+      "county_id": 1,
+      "created_at": "2022-11-28 07:58:09.117716+00",
+      "updated_at": "2022-11-28 07:58:09.117716+00"
+    }
+  }
+  ,{
+    "model": "parking.port",
+    "pk": 2,
+    "fields": {
+      "name": "正濱漁港",
+      "county_id": 1,
+      "created_at": "2022-11-28 07:58:09.117716+00",
+      "updated_at": "2022-11-28 07:58:09.117716+00"
+    }
+  }
+  ,{
+    "model": "parking.port",
+    "pk": 3,
+    "fields": {
+      "name": "烏石漁港",
+      "county_id": 2,
+      "created_at": "2022-11-28 07:58:09.117716+00",
+      "updated_at": "2022-11-28 07:58:09.117716+00"
+    }
+  }
+  ,{
+    "model": "parking.port",
+    "pk": 4,
+    "fields": {
+      "name": "南方澳漁港",
+      "county_id": 2,
+      "created_at": "2022-11-28 07:58:09.117716+00",
+      "updated_at": "2022-11-28 07:58:09.117716+00"
+    }
+  }
+  ,{
+    "model": "parking.port",
+    "pk": 5,
+    "fields": {
+      "name": "新竹漁港",
+      "county_id": 3,
+      "created_at": "2022-11-28 07:58:09.117716+00",
+      "updated_at": "2022-11-28 07:58:09.117716+00"
+    }
+  }
+  ,{
+    "model": "parking.port",
+    "pk": 6,
+    "fields": {
+      "name": "梧棲漁港",
+      "county_id": 4,
+      "created_at": "2022-11-28 07:58:09.117716+00",
+      "updated_at": "2022-11-28 07:58:09.117716+00"
+    }
+  }
+  ,{
+    "model": "parking.port",
+    "pk": 7,
+    "fields": {
+      "name": "安平漁港",
+      "county_id": 5,
+      "created_at": "2022-11-28 07:58:09.117716+00",
+      "updated_at": "2022-11-28 07:58:09.117716+00"
+    }
+  }
+  ,{
+    "model": "parking.port",
+    "pk": 8,
+    "fields": {
+      "name": "前鎮漁港",
+      "county_id": 6,
+      "created_at": "2022-11-28 07:58:09.117716+00",
+      "updated_at": "2022-11-28 07:58:09.117716+00"
+    }
+  }
+  ,{
+    "model": "parking.port",
+    "pk": 9,
+    "fields": {
+      "name": "東港漁港",
+      "county_id": 7,
+      "created_at": "2022-11-28 07:58:09.117716+00",
+      "updated_at": "2022-11-28 07:58:09.117716+00"
+    }
+  }
+]

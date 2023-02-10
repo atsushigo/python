@@ -1,0 +1,33 @@
+{% load static tailwind_tags %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zh-tw">
+	<head>
+    <title>漁港船舶管理平台優化作業入口</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		{% tailwind_css %}
+	</head>
+	<body class="bg-gray-50 font-serif leading-normal tracking-normal">
+		<div class="container mx-auto">
+			<div class="flex items-center justify-center h-screen">
+				<div class="flex items-center mb-4">
+					<button type="button" onclick="location.href='https://www.fishingharbor.tw/';" class="rounded-lg p-12 w-full sm:w-56 bg-gradient-to-r from-sky-600 to-teal-300 text-white text-lg font-semibold">
+						<p class="text-2xl">漁港資訊網</p>
+					</button>
+                </div>
+				<div class="flex items-center mb-4 ml-8">
+					<button type="button" onclick="location.href='/apply-home';" class="rounded-lg p-12 w-full sm:w-56 bg-gradient-to-r from-amber-500 to-amber-200 text-white text-lg font-semibold">
+						<p class="text-2xl">停泊申請</p>
+					</button>
+                </div>
+				<div class="flex items-center mb-4 ml-8">
+					<button type="button" onclick="location.href='/vmip';" class="rounded-lg p-12 w-full sm:w-56 bg-gradient-to-r from-indigo-600 to-gray-300 text-white text-lg font-semibold">
+						<p class="text-2xl">漁港管理</p>
+					</button>
+                </div>
+			</div>
+		</div>
+	</body>

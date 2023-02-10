@@ -1,0 +1,280 @@
+{% extends "user/base.html" %}
+{% block content %} 
+<div class="w-full min-h-[80vh] bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-4 flex justify-center" >
+  <div class="bg-white py-6 px-10 w-full">
+  
+    <div class="pb-4">
+      <div class="flex">
+        <a href="{% url 'payment_admin' %}" class="" >
+          <div class="p-2 w-40 bg-amber-400 mr-4 rounded-lg text-center">
+            繳費紀錄
+          </div>
+        </a> 
+        <a href="{% url 'payment_refund' %}" class="" >
+          <div class="p-2 w-40 bg-amber-600 rounded-lg text-center">
+            退費/註銷繳費單
+          </div>
+        </a>
+      </div>
+
+
+        <form class="mt-4">
+          <div class="grid grid-cols-1 lg:grid-cols-2 content-between justify-items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-2 content-start justify-items-center">
+              <div class="block mb-2 px-4">
+                <label class="mr-7">申請日期起始</label>
+                <input type="date" class="focus:outline-none border-b pb-2 border-sky-400 placeholder-gray-500 rounded-lg w-40" />
+              </div>
+              <div class="block mb-2 px-4">
+                <label class="mr-7">申請日期結束</label>
+                <input type="date" class="focus:outline-none border-b pb-2 border-sky-400 placeholder-gray-500 rounded-lg w-40" />
+              </div>
+    
+              <div class="block mb-2 px-4">
+                <label>申請停泊日期起始</label>
+                <input type="date" class="focus:outline-none border-b pb-2 border-sky-400 placeholder-gray-500 rounded-lg w-40" />
+              </div>
+      
+              <div class="block mb-2 px-4">
+                <label>申請停泊日期結束</label>
+                <input type="date" class="focus:outline-none border-b pb-2 border-sky-400 placeholder-gray-500 rounded-lg w-40" />
+              </div>
+            </div>
+          
+            <div class="grid grid-cols-1 lg:grid-cols-2 content-between justify-items-center">
+              <div class="block mb-2 px-4">
+                <input type="radio" name="ctno">
+                <label class="lg:mr-7">船名</label>
+                <input type="text" class="focus:outline-none border-b pb-2 border-sky-400 placeholder-gray-500 rounded-lg w-40" />
+              </div>
+            
+              <div class="block mb-2 px-4">
+                <input type="radio" name="ctno">
+                <label>MMSI</label>
+                <input type="text" class="focus:outline-none border-b pb-2 border-sky-400 placeholder-gray-500 rounded-lg w-40" />
+              </div>
+    
+              <div class="block mb-2 px-4">
+                <input type="radio" name="ctno">
+                <label>漁船編號</label>
+                <input type="text" class="focus:outline-none border-b pb-2 border-sky-400 placeholder-gray-500 rounded-lg w-40" />
+              </div>
+      
+              <div class="block mb-2 px-4">
+                <input type="radio" name="ctno">
+                <label class="lg:mr-3">IMO</label>
+                <input type="text" class="focus:outline-none border-b pb-2 border-sky-400 placeholder-gray-500 rounded-lg w-40" />
+              </div>
+    
+              <div class="block mb-2 px-4">
+                <input type="radio" name="ctno">
+                <label>船舶號數</label>
+                <input type="text" class="focus:outline-none border-b pb-2 border-sky-400 placeholder-gray-500 rounded-lg w-40" />
+              </div>
+            </div>
+          </div>
+          <div class="col-start-3 col-lg-6 mt-8 mb-4 flex flex-row justify-center">
+            <button class="px-2 py-1 text-white rounded bg-violet-500">查詢</button>
+            <button class="px-2 py-1 text-white rounded bg-blue-500 ml-4">匯出詳細報表</button>
+          </div>
+        </form>
+    </div>
+
+
+    <div class="payment-record">
+        <div class="overflow-x-auto relative shadow-md sm:rounded-lg mt-2">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="py-3 px-6">
+                #
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    
+                </th>
+                <th scope="col" class="py-3 px-6">
+                申請日期
+                </th>
+                <th scope="col" class="py-3 px-6">
+                船名
+                </th>
+                <th scope="col" class="py-3 px-6">
+                漁船編號
+                </th>
+                <th scope="col" class="py-3 px-6">
+                繳費期限
+                </th>
+                <th scope="col" class="py-3 px-6">
+                狀態
+                </th>
+                <th scope="col" class="py-3 px-6">
+            
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th class="py-4 px-6">
+                1
+                </th>
+                <th class="py-4 px-6">
+                    <button class="bg-red-500 text-white text-center rounded-lg p-2 w-28">註銷繳費單</button>
+                </th>
+                <th class="py-4 px-6">
+                2022-11-14
+                </th>
+                <td class="py-4 px-6">
+                測試號
+                </td>
+                <td class="py-4 px-6">
+                CT1-123456
+                </td>
+                <td class="py-4 px-6">
+                2022-12-10
+                </td>
+                <td class="py-4 px-6">
+                    <button class="text-white bg-gray-500 hover:bg-gray-800 text-center rounded-lg p-2 w-20 mr-2">退費</button>
+                    <button class="text-white bg-red-600 hover:bg-red-800 text-center rounded-lg p-2 w-20">通知繳款</button>
+                </td>
+            </tr>
+
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th class="py-4 px-6">
+                2
+                </th>
+                <th class="py-4 px-6">
+                    <button class="bg-yellow-300 text-white text-center rounded-lg p-2 w-28">申請退費</button>
+                </th>
+                <th class="py-4 px-6">
+                2022-11-13
+                </th>
+                <td class="py-4 px-6">
+                李先生
+                </td>
+                <td class="py-4 px-6">
+                CT1-222456
+                </td>
+                <td class="py-4 px-6">
+                2022-12-15
+                </td>
+                <td class="py-4 px-6">
+                  <button class="text-white bg-red-600 hover:bg-red-800 text-center rounded-lg p-2 w-20 mr-2" onclick="location.href='/parking/refund'">退費</button>
+                  <button class="text-white bg-gray-500 hover:bg-gray-800 text-center rounded-lg p-2 w-20">通知繳款</button>
+                </td>
+            </tr>
+
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th class="py-4 px-6">
+                3
+                </th>
+                <th class="py-4 px-6">
+                    <button class="bg-yellow-300 text-white text-center rounded-lg p-2 w-28">申請退費</button>
+                </th>
+                <th class="py-4 px-6">
+                2022-11-12
+                </th>
+                <td class="py-4 px-6">
+                黃先生
+                </td>
+                <td class="py-4 px-6">
+                CT5-123456
+                </td>
+                <td class="py-4 px-6">
+                2022-11-30
+                </td>
+                <td class="py-4 px-6">
+                  <button class="text-white bg-red-600 hover:bg-red-800 text-center rounded-lg p-2 w-20 mr-2" onclick="location.href='/parking/refund'">退費</button>
+                  <button class="text-white bg-gray-500 hover:bg-gray-800 text-center rounded-lg p-2 w-20">通知繳款</button>
+                </td>
+            </tr>
+
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th class="py-4 px-6">
+                4
+                </th>
+                <th class="py-4 px-6">
+                    <button class="bg-red-500 text-white text-center rounded-lg p-2 w-28">註銷繳費單</button>
+                </th>
+                <th class="py-4 px-6">
+                2022-11-10
+                </th>
+                <td class="py-4 px-6">
+                張先生
+                </td>
+                <td class="py-4 px-6">
+                CT4-123456
+                </td>
+                <td class="py-4 px-6">
+                2022-11-20
+                </td>
+                <td class="py-4 px-6">
+                  <button class="text-white bg-gray-500 hover:bg-gray-800 text-center rounded-lg p-2 w-20 mr-2">退費</button>
+                  <button class="text-white bg-red-600 hover:bg-red-800 text-center rounded-lg p-2 w-20">通知繳款</button>
+                </td>
+            </tr>
+
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th class="py-4 px-6">
+                5
+                </th>
+                <th class="py-4 px-6">
+                    <button class="bg-red-500 text-white text-center rounded-lg p-2 w-28">註銷繳費單</button>
+                </th>
+                <th class="py-4 px-6">
+                2022-11-10
+                </th>
+                <td class="py-4 px-6">
+                陳小姐
+                </td>
+                <td class="py-4 px-6">
+                CT3-123456
+                </td>
+                <td class="py-4 px-6">
+                2022-11-20
+                </td>
+                <td class="py-4 px-6">
+                  <button class="text-white bg-gray-500 hover:bg-gray-800 text-center rounded-lg p-2 w-20 mr-2">退費</button>
+                  <button class="text-white bg-red-600 hover:bg-red-800 text-center rounded-lg p-2 w-20">通知繳款</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        
+        </div>
+        <nav class="flex justify-between items-center pt-4" aria-label="Table navigation">
+        <span class="text-sm font-normal text-gray-500 dark:text-gray-400">顯示 <span class="font-semibold text-gray-900 dark:text-white">1-10</span> 共有 <span class="font-semibold text-gray-900 dark:text-white">1000</span> 筆資料</span>
+        <ul class="inline-flex items-center -space-x-px">
+            <li>
+                <a href="#" class="block py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                    <span class="sr-only">Previous</span>
+                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                </a>
+            </li>
+            <li>
+            <a href="#" aria-current="page" class="z-10 py-2 px-3 leading-tight text-blue-600 bg-blue-50 border border-blue-300 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">1</a>
+            </li>
+            <li>
+                <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+            </li>
+            <li>
+            <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">3</a>
+            </li>
+            <li>
+                <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">...</a>
+            </li>
+            <li>
+                <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">100</a>
+            </li>
+            <li>
+            <a href="#" class="block py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                <span class="sr-only">Next</span>
+                <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+            </a>
+            </li>
+        </ul>
+        </nav>
+    </div>
+
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,230 @@
+{% extends "user/base.html" %}
+{% block content %}
+<!-- component -->
+<div class="w-full block min-h-[80vh] bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-4 flex items-center justify-center" >
+  <div class="bg-white py-6 px-10 sm:max-w-md w-full ">
+      <div class="sm:text-3xl text-2xl font-semibold text-center text-sky-600  mb-12">
+          帳號註冊
+      </div>
+      <div>
+        <form method="post">
+          {% csrf_token %}
+          <div class="form-group mb-4">
+            <span class="text-red-500">{{ form.identity.errors }}</span>
+            <label for="identity">身分別</label>
+            <select id="identity" name="identity" onchange="changeForm()" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg">
+              <option>進港申請者</option>
+              <option>管理者</option>
+            </select>
+          </div>
+
+          <div class="form-group mb-4">
+            <span class="text-red-500">{{ form.username.errors }}</span>
+            <label for="username">帳號</label>
+            <input 
+              type="text" id="username" name="username" 
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+              required
+            />
+          </div>
+
+          <div class="form-group mb-4">
+            <span class="text-red-500">{{ form.name.errors }}</span>
+            <label for="name">姓名</label>
+            <input 
+              type="text" id="name" name="name" 
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+              required
+            />
+          </div>
+
+          <div id="unit_customer_div" class="form-group mb-4">
+            <span class="text-red-500">{{ form.unit.errors }}</span>
+            <label for="unit">單位</label>
+            <input 
+              type="text" id="unit" name="unit" 
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+              required
+            />
+          </div>
+
+          <div id="unit_admin_div" class="form-group mb-4" hidden>
+            <span class="text-red-500">{{ form.unit_admin.errors }}</span>
+            <label for="unit_admin">單位</label>
+            <select id="unit_admin" name="unit_admin" onchange="changePerm()" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg">
+              <option>漁業署</option>
+              <option>各縣市政府</option>
+              <option>海巡署</option>
+            </select>
+          </div>
+
+          <div id="id_no_div" class="form-group mb-4">
+            <span class="text-red-500">{{ form.id_no.errors }}</span>
+            <label for="id_no">身分證字號</label>
+            <input 
+              type="text" id="id_no" name="id_no" 
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+              required
+            />
+          </div>
+
+          <div id="title_div" class="form-group mb-4" hidden>
+            <span class="text-red-500">{{ form.title.errors }}</span>
+            <label for="title">職稱</label>
+            <input 
+              type="text" id="title" name="title" 
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+              required
+            />
+          </div>
+
+          <div id="fishery_agency_perm_div" class="form-group mb-4" hidden>
+            <span class="text-red-500">{{ form.name.errors }}</span>
+            <label for="fishery_agency">漁業署權限</label>
+            <select id="fishery_agency" name="fishery_agency" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg">
+              <option>資料維護者</option>
+              <option>資料查詢者</option>
+              <option>資料批核者</option>
+            </select>
+          </div>
+
+          <div id="county_agency_perm_div" class="form-group mb-4" hidden>
+            <span class="text-red-500">{{ form.name.errors }}</span>
+            <label for="county_agency">縣市政府權限</label>
+            <select id="county_agency" name="county_agency" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg">
+              <option>資料維護者</option>
+              <option>資料查詢者</option>
+              <option>資料批核者</option>
+            </select>
+          </div>
+
+          <div class="form-group mb-4">
+            <span class="text-red-500">{{ form.name.errors }}</span>
+            <label for="residential_no">電話(分機)</label>
+            <input 
+              type="text" id="residential_no" name="residential_no" 
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+              required
+            />
+          </div>
+
+          <div class="form-group mb-4">
+            <span class="text-red-500">{{ form.name.errors }}</span>
+            <label for="mobile_no">手機</label>
+            <input 
+              type="text" id="mobile_no" name="mobile_no" 
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+              required
+            />
+          </div>
+
+          <div class="form-group mb-4">
+            <span class="text-red-500">{{ form.name.errors }}</span>
+            <label for="fax_no">傳真</label>
+            <input 
+              type="text" id="fax_no" name="fax_no" 
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+              required
+            />
+          </div>
+    
+          <div class="form-group mb-4">
+            <span class="text-red-500">{{ form.email.errors }}</span>
+            <label for="email">電子信箱</label>
+            <input 
+              type="email" id="email" name="email" 
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+              required
+            />
+          </div>
+
+          <div class="form-group mb-4">
+            <span class="text-red-500">{{ form.name.errors }}</span>
+            <label for="address">聯絡地址</label>
+            <input 
+              type="text" id="address" name="address" 
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+              required
+            />
+          </div>
+
+          <div class="form-group mb-4">
+            <span class="text-red-500">{{ form.password.errors }}</span>
+            <label for="password1">密碼</label>
+            <input 
+              type="password" id="password1" name="password1" 
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+              required
+            />
+          </div>
+          
+          <div class="form-group mb-4">
+            <span class="text-red-500">{{ form.password2.errors }}</span>
+            <label for="password2">密碼確認</label>
+            <input 
+              type="password" id="password2" name="password2" 
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+              required
+            />
+          </div>
+          
+          <div class="flex  justify-center my-6">
+            <button type="submit" class="rounded-full p-3 w-full sm:w-56 bg-gradient-to-r from-sky-600 to-teal-300 text-white text-lg font-semibold" >
+                註冊
+            </button>
+          </div>
+        </form>
+      
+        <div class="flex justify-center ">
+            <p class="text-gray-500">已有帳號 </p>
+            <a href="/user/login" class="text-sky-600 pl-2"> 立即登入</a>
+        </div>
+      </div>
+  </div>
+</div>
+
+<script>
+  function changeForm() {
+    if ($('identity').val() == '進港申請者') {
+      $('#unit_admin_div').hide();
+      $('#unit_customer_div').show();
+      $('#id_no_div').show();
+      $('#title_div').hide();
+      $('#fishery_agency_perm_div').hide();
+    } else {
+      $('#unit_admin_div').show();
+      $('#unit_customer_div').hide();
+      $('#id_no_div').hide();
+      $('#title_div').show();
+      $('#fishery_agency_perm_div').show();
+    }
+  }
+
+  function changePerm() {
+    if($('#unit_admin').val() == '漁業署') {
+      $('#fishery_agency_perm_div').show();
+      $('#county_agency_perm_div').hide();
+    } else if($('#unit_admin').val() = '各縣市政府') {
+      $('#fishery_agency_perm_div').hide();
+      $('#county_agency_perm_div').show();
+    } else {
+      $('#fishery_agency_perm_div').hide();
+      $('#county_agency_perm_div').hide();
+    }
+  }
+
+</script>
+{% endblock content %}
+

@@ -1,0 +1,312 @@
+{% extends "user/base.html" %}
+{% block content %} 
+<div class="w-full min-h-[80vh] bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-4 flex justify-center" >
+  <div class="bg-white py-6 px-10 w-full">
+  
+    <div class="pb-4">
+      <form>
+        <div class="grid sm:grid-cols-3 grid-cols-1 content-between justify-items-center mb-4">
+          <div class="form-group mb-2">
+            <label>申請日期起始</label>
+            <input type="datetime-local" class="focus:outline-none border-b pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />
+          </div>
+  
+          <div class="form-group mb-2">
+            <label>申請日期結束</label>
+            <input type="datetime-local" class="focus:outline-none border-b pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />
+          </div>
+
+          <div class="form-group mb-2">
+            <label>漁港</label>
+            <input type="text" class="focus:outline-none border-b pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button class="px-2 py-1 text-white rounded bg-pink-300 mr-4">查詢</button>
+          <button class="px-2 py-1 text-white rounded bg-blue-500">匯出詳細報表</button>
+        </div>
+      </form>
+    </div>
+    <div class="overflow-x-auto relative shadow-md sm:rounded-lg w-full">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-teal-200 dark:bg-teal-700 dark:text-gray-400">
+          <tr>
+            <th scope="col" class="py-3 px-6">
+              第一類漁港
+            </th>
+            <th scope="col" class="py-3 px-6">
+              申請次數
+            </th>
+            <th scope="col" class="py-3 px-6">
+              申請通過
+            </th>
+            <th scope="col" class="py-3 px-6">
+              申請未通過
+            </th>
+            <th scope="col" class="py-3 px-6">
+              已繳費
+            </th>
+            <th scope="col" class="py-3 px-6">
+              未繳費
+            </th>
+            <th scope="col" class="py-3 px-6">
+              未申請進入漁港<br>同意</span>
+            </th>
+            <th scope="col" class="py-3 px-6">
+              未申請進入漁港<br>不同意
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              基隆市八斗子漁港
+            </th>
+            <th class="py-4 px-6">
+              20
+            </th>
+            <th class="py-4 px-6">
+              18
+            </th>
+            <th class="py-4 px-6">
+              2
+            </th>
+            <th class="py-4 px-6">
+              18
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+          </tr>
+
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              基隆市正濱漁港
+            </th>
+            <th class="py-4 px-6">
+              18
+            </th>
+            <th class="py-4 px-6">
+              18
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              18
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+          </tr>
+
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              宜蘭縣烏石漁港
+            </th>
+            <th class="py-4 px-6">
+              16
+            </th>
+            <th class="py-4 px-6">
+              16
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              16
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+          </tr>
+
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              宜蘭縣南方澳漁港
+            </th>
+            <th class="py-4 px-6">
+              14
+            </th>
+            <th class="py-4 px-6">
+              14
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              14
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+          </tr>
+
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              新竹市新竹漁港
+            </th>
+            <th class="py-4 px-6">
+              13
+            </th>
+            <th class="py-4 px-6">
+              13
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              13
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+          </tr>
+
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              台中市梧棲漁港
+            </th>
+            <th class="py-4 px-6">
+              13
+            </th>
+            <th class="py-4 px-6">
+              13
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              13
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+          </tr>
+
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              台南市安平漁港
+            </th>
+            <th class="py-4 px-6">
+              11
+            </th>
+            <th class="py-4 px-6">
+              11
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              11
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+          </tr>
+
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              高雄市前鎮漁港
+            </th>
+            <th class="py-4 px-6">
+              10
+            </th>
+            <th class="py-4 px-6">
+              10
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              10
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+          </tr>
+
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              屏東縣東港漁港
+            </th>
+            <th class="py-4 px-6">
+              10
+            </th>
+            <th class="py-4 px-6">
+              10
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              10
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+            <th class="py-4 px-6">
+              0
+            </th>
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>
+  </div>
+</div>
+     
+{% endblock content %}
+

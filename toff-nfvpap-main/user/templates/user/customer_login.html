@@ -1,0 +1,53 @@
+{% extends "user/base.html" %}
+{% block content %}
+<div class="w-full min-h-screen bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-4 flex items-center justify-center" >
+  <div class="bg-white py-6 px-10 sm:max-w-md w-full ">
+
+    <h2 class="sm:text-3xl text-2xl font-semibold text-center text-sky-600 mb-5">登入介面</h2>
+
+    <form action="{{ app_path }}" method="post" id="login-form">
+      {% csrf_token %}
+      <div class="mb-4">
+        <span class="text-red-500">{{ form.username.errors }}</span>
+        <input 
+          type="text" id="username" name="username" 
+          class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+          maxlength="100"
+          required
+        />
+      </div>
+
+      <div class="mb-4">
+        <span class="text-red-500">{{ form.password.errors }}</span>
+            <label for="password">密碼</label>
+            <input 
+              type="password" id="password" name="password" 
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+              required
+            />
+      </div>
+
+      <div class="flex justify-content-center mb-5">
+        <input class="border-sky-400 mr-2" type="checkbox" value="" id="remember_me" />
+        <label class="" for="remember_me">
+          記住我 <a href="#!"><u>忘記密碼</u></a>
+        </label>
+      </div>
+
+      <div class="flex justify-center my-6">
+        <button type="submit" class="rounded-full p-3 w-full sm:w-56 bg-gradient-to-r from-sky-600 to-teal-300 text-white text-lg font-semibold" >
+            登入
+        </button>
+      </div>
+
+      <div class="flex justify-center ">
+        <p class="text-gray-500">沒有帳號? </p>
+        <a href="/user/register" class="text-sky-600 ml-2">註冊</a>
+      </div>
+    </form>
+
+  </div>
+</div>
+{% endblock content %}
+

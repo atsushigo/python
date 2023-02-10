@@ -1,0 +1,141 @@
+{% extends "user/base.html" %}
+{% block content %} 
+<div class="w-full min-h-[80vh] bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-4 flex justify-center" >
+    <div class="bg-white py-6 px-10 w-full">
+    <h2 class="text-2xl font-semibold text-center text-sky-600 mb-5">退費明細</h2>
+        <div class="grid grid-cols-4 gap-x-10">
+            <div class="col-span-3">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="py-3 px-6">
+                                #
+                            </th>
+                            <th scope="col" class="py-3 px-6">
+                                船編
+                            </th>
+                            <th scope="col" class="py-3 px-6">
+                                船名
+                            </th>
+                            <th scope="col" class="py-3 px-6">
+                                進港日期
+                            </th>
+                            <th scope="col" class="py-3 px-6">
+                                出港日期
+                            </th>
+                            <th scope="col" class="py-3 px-6">
+                                本次停泊天數
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in '12345' %}
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th class="py-4 px-6">
+                                {{ i }}
+                            </th>
+                            <th class="py-2 px-6">
+                                CT3-123456
+                            </th>
+                            <th class="py-4 px-6">
+                                測試號
+                            </th>
+                            <td class="py-4 px-6">
+                                2022-12-10
+                            </td>
+                            <td class="py-4 px-6">
+                                2022-12-11
+                            </td>
+                            <td class="py-4 px-6">
+                                1天
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <nav class="flex justify-between items-center pt-4" aria-label="Table navigation">
+                    <span class="text-sm font-normal text-gray-500 dark:text-gray-400">顯示 <span class="font-semibold text-gray-900 dark:text-white">1-30</span> 共有 <span class="font-semibold text-gray-900 dark:text-white">1000</span> 筆資料</span>
+                    <ul class="inline-flex items-center -space-x-px">
+                        <li>
+                            <a href="#" class="block py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <span class="sr-only">Previous</span>
+                                <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" aria-current="page" class="z-10 py-2 px-3 leading-tight text-blue-600 bg-blue-50 border border-blue-300 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">1</a>
+                        </li>
+                        <li>
+                            <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+                        </li>
+                        <li>
+                            <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">3</a>
+                        </li>
+                        <li>
+                            <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">...</a>
+                        </li>
+                        <li>
+                            <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">100</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <span class="sr-only">Next</span>
+                                <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div>
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <tbody>
+                        <tr class="border-b border-gray-400 dark:border-gray-700">
+                            <th scope="row" class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap bg-blue-100 dark:text-white dark:bg-gray-800">
+                                此次申請
+                            </th>
+                            <td class="py-4 px-2">
+                                10天
+                            </td>
+                        </tr>
+                        <tr class="border-b border-gray-400 dark:border-gray-700">
+                            <th scope="row" class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap bg-blue-100 dark:text-white dark:bg-gray-800">
+                                實際停泊
+                            </th>
+                            <td class="py-4 px-2">
+                                5天
+                            </td>
+                        </tr>
+                        <tr class="border-b border-gray-400 dark:border-gray-700">
+                            <th scope="row" class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap bg-blue-100 dark:text-white dark:bg-gray-800">
+                                已繳納費用
+                            </th>
+                            <td class="py-4 px-2">
+                                2700元
+                            </td>
+                        </tr>
+                        <tr class="border-b border-gray-400 dark:border-gray-700">
+                            <th scope="row" class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap bg-blue-100 dark:text-white dark:bg-gray-800">
+                                實際應收費用
+                            </th>
+                            <td class="py-4 px-2">
+                                1350元
+                            </td>
+                        </tr>
+                        <tr class="border-b border-gray-400 dark:border-gray-700">
+                            <th scope="row" class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap bg-blue-100 dark:text-white dark:bg-gray-800">
+                                預計退費
+                            </th>
+                            <td class="py-4 px-2">
+                                1350元
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="p-3 text-white rounded bg-blue-500 mt-4">列印退費單</button>
+                <span class="text-red-500 font-bold"> ※ 紙本函送至漁業署辦理退費</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

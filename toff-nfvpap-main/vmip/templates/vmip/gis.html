@@ -1,0 +1,216 @@
+{% extends "vmip/base.html" %}
+{% block content %} 
+<div class="w-full min-h-screen bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-4 flex justify-center" >
+  <div class="bg-white py-6 px-10 w-full">
+  
+    <h2 class="text-2xl font-semibold text-center text-sky-600 mb-5">漁港船舶查詢</h2>
+    <div class="flex justify-evenly h-full relative">
+        <div id="map" class="w-4/5 h-4/5 z-10"></div>
+        <div class="w-[20rem] absolute left-60 top-2 z-50">
+            <div class="flex-1 bg-gray-400 bg-opacity-80 text-white p-2 rounded-lg mb-2 relative">
+                <form>
+                    <div class="content-between">
+                        <div class="form-group mb-2">
+                            <label>&emsp;&emsp;船名：</label>
+                            <input type="text" class="focus:outline-none border-b placeholder-gray-500 rounded-lg p-1" />
+                        </div>
+                
+                        <div class="form-group mb-2">
+                            <label>漁船編號：</label>
+                            <input type="text" class="focus:outline-none border-b placeholder-gray-500 rounded-lg p-1" />
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label>船舶號數：</label>
+                            <input type="text" class="focus:outline-none border-b placeholder-gray-500 rounded-lg p-1" />
+                        </div>
+            
+                        <div class="form-group mb-2">
+                            <label>&emsp;&thinsp;MMSI：</label>
+                            <input type="text" class="focus:outline-none border-b placeholder-gray-500 rounded-lg p-1" />
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label>&emsp;&ensp;&thinsp;&thinsp;IMO：</label>
+                            <input type="text" class="focus:outline-none border-b placeholder-gray-500 rounded-lg p-1" />
+                        </div>
+
+                        <div class="flex justify-center mt-4">
+                            <button type="button" onclick="history.go(-1)" class="text-white bg-sky-500 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-600 dark:border-gray-600">查詢</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="absolute right-60 top-2 z-50 w-52 bg-opacity-70" id="taiwan">
+            <div class="flex-1 bg-gray-400 bg-opacity-80 text-white p-2 rounded-lg mb-2 relative">
+                <form>
+                    <div class="content-between">
+                        <div class="form-group mb-2">
+                            全臺地區
+                        </div>
+            
+                        <div class="form-group mb-2">
+                            在港漁船數：2000艘
+                        </div>
+
+                        <div class="form-group mb-2">
+                            可容納漁船數：4500艘
+                        </div>
+                        
+                        <div class="form-group mb-2">
+                            在港非漁船數：10艘
+                        </div>
+                        
+                        <div class="form-group mb-2">
+                            可容納非漁船數：10艘
+                        </div>
+
+                        <div class="form-group mb-2 underline text-blue-700 font-bold cursor-pointer">
+                            在港船舶明細
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="hidden absolute right-60 top-2 z-50 w-52 bg-opacity-70" id="keelung">
+            <div class="flex-1 bg-gray-400 bg-opacity-80 text-white p-2 rounded-lg mb-2 relative">
+                <form>
+                    <div class="content-between">
+                        <div class="form-group mb-2">
+                            縣市：基隆市
+                        </div>
+                
+                        <div class="form-group mb-2">
+                            漁港：八斗子漁港
+                        </div>
+            
+                        <div class="form-group mb-2">
+                            在港漁船數：100艘
+                        </div>
+
+                        <div class="form-group mb-2">
+                            可容納漁船數：120艘
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+
+  </div>
+</div>
+     
+<script>
+    var map = L.map('map').setView([23.604799, 120.7976256], 7);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    L.control.scale({
+        position: 'bottomleft'
+    }).addTo(map);
+
+    const test = `<div class="flex-1 bg-opacity-80 text-black p-2 rounded-lg mb-2 relative">
+                <form>
+                    <div class="content-between">
+                        <div class="form-group mb-2">
+                            船名：測試號
+                        </div>
+                        <div class="form-group mb-2">
+                            船編：CT0001234
+                        </div>
+                        <div class="form-group mb-2">
+                            船籍縣市：基隆市
+                        </div>
+                        <div class="form-group mb-2">
+                            船籍漁會：基隆
+                        </div>
+                        <div class="form-group mb-2">
+                            MMSI：123456789
+                        </div>
+                        <div class="form-group mb-2">
+                            進港日期：2022-11-16
+                        </div>
+                        <div class="form-group mb-2">
+                            進港港口：八斗子
+                        </div>
+                        <div class="flex justify-center mt-4">
+                            <button type="button" onclick="location.href='/vmip/boat_details';" class="text-white bg-indigo-500 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-600 dark:border-gray-600">漁船詳細資料</button>
+                            <button type="button" onclick="location.href='/vmip';" class="text-white bg-sky-500 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-600 dark:border-gray-600">進出港紀錄查詢</button>
+                        </div>
+                    </div>
+                </form>
+            </div>`
+            const test2 = `<div class="flex-1 bg-opacity-80 text-black p-2 rounded-lg mb-2 relative">
+                <form>
+                    <div class="content-between">
+                        <div class="form-group mb-2">
+                            船名：測試2號
+                        </div>
+                        <div class="form-group mb-2">
+                            船編：CT0001235
+                        </div>
+                        <div class="form-group mb-2">
+                            船籍縣市：基隆市
+                        </div>
+                        <div class="form-group mb-2">
+                            船籍漁會：基隆
+                        </div>
+                        <div class="form-group mb-2">
+                            MMSI：123456789
+                        </div>
+                        <div class="form-group mb-2">
+                            進港日期：2022-11-16
+                        </div>
+                        <div class="form-group mb-2">
+                            進港港口：八斗子
+                        </div>
+                        <div class="flex justify-start mt-2">
+                            <button type="button" onclick="location.href='/parking/review';" class="text-white bg-emerald-300 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-600 dark:border-gray-600">檢視申請進度表</button>
+                        </div>
+                        <div class="flex justify-center mt-1">
+                            <button type="button" onclick="location.href='/vmip/boat_details';" class="text-white bg-indigo-500 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-600 dark:border-gray-600">漁船詳細資料</button>
+                            <button type="button" onclick="location.href='/vmip';" class="text-white bg-sky-500 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-600 dark:border-gray-600">進出港紀錄查詢</button>
+                        </div>
+                    </div>
+                </form>
+            </div>`
+    var marker = L.marker([25.141784, 121.792944]).addTo(map);
+    marker.bindPopup(test);
+    var marker2 = L.marker([25.141784, 121.793955]).addTo(map);
+    marker2.bindPopup(test2);
+
+    // 監控使用者對地圖的操作，來更改右上角船舶資訊
+    $('#map').on("click wheel", function (event) {
+        getCoordinate();
+    })
+    
+    // 切換漁港資訊
+    function getCoordinate(){ 
+        // console.log(map.getCenter());
+        const lat = map.getCenter().lat;
+        const lng = map.getCenter().lng;
+        const port = ['taiwan', 'keelung'];
+
+        port.forEach((element) => {
+            $(`#${element}`).hide();
+        })
+
+        if(lat > 25.14 && lat < 25.15 && lng > 121.79 && lng < 121.80) {
+            $('#keelung').show();
+        }else {
+            $('#taiwan').show();
+        }
+    } 
+    map.attributionControl.setPrefix('')
+
+</script>
+
+{% endblock content %}
+

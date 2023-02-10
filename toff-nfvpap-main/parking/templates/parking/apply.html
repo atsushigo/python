@@ -1,0 +1,290 @@
+{% extends "user/base.html" %}
+{% block content %} 
+<div class="w-full min-h-screen bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-4 flex items-center justify-center" >
+  <div class="bg-white py-3 px-6 sm:max-w-md w-full ">
+  
+    <h2 class="sm:text-3xl text-3xl font-semibold text-center text-sky-600 mb-5">非漁船船舶進出<br>漁港申請表</h2>
+  
+    <form method="post" id="applyForm" data-ports-url="{% url 'ajax_load_ports' %}">
+      {% csrf_token %}
+      <div class="form-group mb-4">
+        <label class="form-label" for="form_filling_date">申請時間</label>
+        <input type="datetime-local" id="form_filling_date" name="form_filling_date" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" required />      
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label" for="scheduled_arrival">預定進港時間</label>
+        <input type="datetime-local" id="scheduled_arrival" name="scheduled_arrival" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" required />
+      </div>
+ 
+      <div class="form-group mb-4">
+        <label class="form-label" for="scheduled_departure">預定出港時間</label>
+        <input type="datetime-local" id="scheduled_departure" name="scheduled_departure" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" required />      
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label" for="purpose">申請進港目的</label>
+        <div class="form-group form-check">
+          <input type="radio" class="border-sky-400 mr-2" name="purpose" value="repair" id="repair">
+          <label for="repair">維修</label>
+        </div>
+        <div class="form-group form-check">
+          <input type="radio" class="border-sky-400 mr-2" name="purpose" value="supply" id="supply">
+          <label for="supply">補給</label>
+        </div>
+        <div class="form-group form-check">
+          <input type="radio" class="border-sky-400 mr-2" name="purpose" id="other">
+          <label for="other">其他</label>
+          <input type="text" name="purpose" value="{{ other_purpose }}" class="focus:outline-none focus:ring-transparent border-0 border-b border-sky-400 placeholder-gray-500 mr-2 h-0.5" id="other">
+        </div>
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label" for="port">申請停泊地區</label>
+        <div class="form-group form-check">
+          <select name="county" id="county" class="focus:outline-none border-b mb-2 w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg">
+            <option selected>請選擇縣市</option>
+            {% for c in counties %}
+            <option value="{{ c.id }}">{{ c.name }}</option>
+            {% endfor %}
+          </select>
+          
+          <select name="port" id="port" class="focus:outline-none border-b mb-2 w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" required >
+            <option selected>請選擇港口</option>
+            {% for p in ports %}
+            <option value="{{ p.county_id }}">{{ p.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <h3 class="text-cyan-400 text-xl">船舶基本資料欄(以下欄位請逐項填寫)</h3>
+
+      <div class="form-group mb-4">
+        <label class="form-label" for="ship_name">船舶名稱</label>
+        <input type="text" id="ship_name" name="ship_name" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />      
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label" for="ship_ctno">船舶編號</label>
+        <input type="text" id="ship_ctno" name="ship_ctno" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />      
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label" for="tonnage">船舶總噸數(噸)</label>
+        <input type="text" id="tonnage" name="tonnage" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />    
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label" for="ship_length">船舶總長度(呎)</label>
+        <input type="text" id="ship_length" name="ship_length" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label" for="ship_properties">船舶種類</label>
+        <div class="form-group form-check">
+          <input type="radio" class="border-sky-400 mr-2" name="ship_properties" value="工作船" id="working">
+          <label for="self-use">工作船</label>
+        </div>
+
+        <div class="form-group form-check">
+          <input type="radio" class="border-sky-400 mr-2" name="ship_properties" value="交通船" id="traffic">
+          <label for="business_use">交通船</label>
+        </div>
+
+        <div class="form-group form-check">
+          <input type="radio" class="border-sky-400 mr-2" name="ship_properties" value="海上遊樂船舶" id="recreation">
+          <label for="business_use">海上遊樂船舶</label>
+        </div>
+
+        <div class="form-group form-check">
+          <input type="radio" class="border-sky-400 mr-2" name="ship_properties" value="公務船舶、研究船、訓練船" id="official">
+          <label for="business_use">公務船舶、研究船、訓練船</label>
+        </div>
+
+        <div class="form-group form-check">
+          <input type="radio" class="border-sky-400 mr-2" name="ship_properties" value="國內新建造之銷售用遊艇" id="yacht">
+          <label for="business_use">國內新建造之銷售用遊艇</label>
+        </div>
+
+        <div class="form-group form-check">
+          <input type="radio" class="border-sky-400 mr-2" name="ship_properties" id="other_properties">
+          <label for="business_use">其他</label>
+          <input type="text" name="ship_properties" value="{{ other_ship_properties }}" class="focus:outline-none focus:ring-transparent border-0 border-b border-sky-400 placeholder-gray-500 mr-2 h-0.5" id="other">
+        </div>
+      </div>
+
+      <h3 class="text-cyan-400 text-xl">乘客基本資料欄</h3>
+      <div class="form-group mb-4">
+        <label class="form-label" for="name">船上人員名單</label>
+        <input type="text" id="name" name="name" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label" for="job_title">職稱</label>
+        <input type="text" id="job_title" name="job_title" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label" for="passenger_id_num">身分證字號/護照號碼</label>
+        <input type="text" id="passenger_id_num" name="passenger_id_num" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label" for="passenger_contact_no">聯絡電話</label>
+        <input type="text" id="passenger_contact_no" name="passenger_contact_no" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label" for="passenger_emergency_contact_person">緊急聯絡人</label>
+        <input type="text" id="passenger_emergency_contact_person" name="passenger_emergency_contact_person" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label" for="passenger_emergency_contact_no">緊急聯絡電話</label>
+        <input type="text" id="passenger_emergency_contact_no" name="passenger_emergency_contact_no" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />
+      </div>
+      
+      <h3 class="text-cyan-400 text-xl">申請人基本資料欄(以下欄位請逐項填寫)</h3>
+
+      <div class="form-group mb-4">
+        <label class="form-label" for="name">姓名(或公司名稱)</label>
+        <input type="text" id="name" name="person_name" value="{{ user.username }}" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label" for="name">公司之負責人</label>
+        <input type="text" id="name" name="person_incharge" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label" for="id_no">申請人或公司負責人身分證字號</label>
+        <input type="text" id="id_no" name="id_no" value="{{ user.profile.id_no }}" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />      
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label" for="id_no">出生年月日</label>
+        <input type="date" id="date_of_birth" name="date_of_birth" value="{{ user.profile.date_of_birth | date:'Y-m-d'}}" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />      
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label" for="address">聯絡地址</label>
+        <input type="text" id="address" name="address" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />      
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label" for="contact_no_residential">聯絡電話及傳真</label>
+        <input type="text" id="contact_no" name="contact_no" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" placeholder="電話" />
+        <input type="text" id="mobile_no" name="mobile_no" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg mt-2" placeholder="行動電話" />      
+        <input type="text" id="fax_no" name="fax_no" class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg mt-2" placeholder="傳真" />  
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label" for="cert">上傳執照</label>
+        <input type="file" id="cert" name="cert" class="block w-full text-gray-900 rounded-lg border border-sky-400 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" />
+      </div>
+ 
+      <h3 class="text-red-400">申請應行注意事項</h3>
+
+      <div class="form-group mb-4">
+       <p class="mb-2">一、本表申請人以船舶之所有人、公司或船長為限。</p>
+       <p class="mb-2">二、申請人填寫本表後，得以傳真方式傳真（傳真電話：04-26581941）本所漁港管理課申請。</p>
+       <p class="mb-2">三、船舶獲准停泊漁港之碼頭及水域屬公共使用空間，不得排除其他漁船或經核准停泊之船舶使用。</p>
+       <p class="mb-2">四、船舶進出漁港及使用漁港碼頭期間，不得影響漁船及漁民作業，並應自行掌握泊地、航道水文、水深及潮汐變化等相關資料，確實注意航行安全。</p>
+       <p>五、本表未獲主管機關答覆同意前，申請之船舶不得提前進港，違反者，依漁港法第二十二條規定處以船舶所有人或船長新臺幣三萬元以上十二萬元以下罰鍰。</p>
+      </div>
+
+      <div>
+        <input type="checkbox" class="border-blue-500 mr-2">同意進出漁港時，務必開啟AIS，否則將取消當次申請停泊資料
+      </div>
+      <div>
+        <input type="checkbox" class="border-blue-500 mr-2">本次申請期間到期如需展延停泊時間，請另提出新申請單
+      </div>
+      
+      <!-- <div class="flex justify-center my-6">
+        <input class="rounded-full p-3 w-full sm:w-56 bg-gradient-to-r from-sky-600 to-teal-300 text-white text-lg font-semibold" type="submit" value="申請" />
+      </div> -->
+    </form>
+    <div class="flex justify-center my-6" id="next_button">
+      <button class="rounded-full p-3 w-full sm:w-56 bg-gradient-to-r from-sky-600 to-teal-300 text-white text-lg font-semibold" onclick="nextPage()">下一頁</button>
+    </div>
+    
+    <div class="hidden" id="calculate_payment">
+      {% include "parking/calculate_payment.html" %}
+    </div>
+  </div>
+</div>
+
+<script>
+  // 選縣市會帶出對應的港口
+  $("#county").change(function() {
+    let url = $("#applyForm").attr("data-ports-url");
+    let county_id = $(this).val();
+    $.ajax({
+      url: url,
+      data: {
+        'county': county_id,
+      },
+      success: function(data) {
+        $("#port").html(data);
+      }
+    });
+  })
+
+  // 輸入船名自動帶出船舶資料
+  $("#ship_name").change(function() {
+    let ship_name = $(this).val();
+    $.ajax({
+      url: '/parking/ajax/load-vessels',
+      data: {
+        'ship_name': ship_name
+      },
+      success: function(data) {
+        // console.log(data);
+        document.getElementById('tonnage').value = data.tonnage;
+        document.getElementById('ship_length').value = data.length;
+        document.getElementById(data.properties).checked = true;
+      }
+    });
+  })
+
+  function convertDtString(dt) {
+    let day = dt.getDate();
+    let month = dt.getMonth() + 1;
+    let year = dt.getFullYear();
+    let hour = dt.getHours();
+    let minutes = dt.getMinutes();
+    if (month < 10) month = "0" + month;
+    if (day < 10) day = "0" + day;
+    if (hour < 10) hour = "0" + hour;
+    if (minutes < 10) minutes = "0" + minutes;
+    let res = year + '-' + month + '-' + day + 'T' + hour + ':' +  minutes;
+    return res;
+  }
+
+  let datetime_now = convertDtString(new Date());
+  document.getElementById('form_filling_date').value = datetime_now;
+
+  let min_scheduled_arrival = new Date();
+  min_scheduled_arrival.setDate(min_scheduled_arrival.getDate() + 3);
+  let min_scheduled_arrival_dt = convertDtString(min_scheduled_arrival)
+
+  document.getElementById('scheduled_arrival').value = min_scheduled_arrival_dt;
+  document.getElementById('scheduled_arrival').setAttribute('min', min_scheduled_arrival_dt);
+
+  let min_scheduled_departure = new Date();
+  min_scheduled_departure.setDate(min_scheduled_departure.getDate() + 4);
+  let min_scheduled_departure_dt = convertDtString(min_scheduled_departure)
+
+  document.getElementById('scheduled_departure').value = min_scheduled_departure_dt;
+  document.getElementById('scheduled_departure').setAttribute('min', min_scheduled_departure_dt);
+
+  function nextPage() {
+    $('#calculate_payment').show();
+    $('#applyForm').hide();
+    $('#next_button').hide();
+  }
+
+</script>
+{% endblock content %}
+

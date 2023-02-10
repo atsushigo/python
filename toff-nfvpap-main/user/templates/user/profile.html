@@ -1,0 +1,155 @@
+{% extends "user/base.html" %}
+{% block title %}我的帳號{% endblock title%}
+{% block content %}
+<!-- component -->
+<div class="w-full block min-h-[80vh] bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-4 flex items-center justify-center" >
+  <div class="bg-white py-6 px-10 sm:max-w-md w-full ">
+      <div class="sm:text-3xl text-2xl font-semibold text-center text-sky-600  mb-12">
+        我的帳號
+      </div>
+      <div>
+        <form method="post">
+          {% csrf_token %}
+          <p class="px-2 py-1 bg-orange-300 w-20 font-bold">我的帳號</p>
+          <br>
+          <div class="form-group mb-4">
+            <span class="text-red-500">{{ form.username.errors }}</span>
+            <label for="username">帳號</label>
+            <input 
+              type="text" id="username" name="username" value="{{ user.username }}" 
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+              required
+              readonly
+            />
+          </div>
+
+          <div class="form-group mb-4">
+            <span class="text-red-500">{{ form.name.errors }}</span>
+            <label for="name">姓名</label>
+            <input 
+              type="text" id="name" name="name" value="{{ user.profile.name }}"
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+            />
+          </div>
+
+          {% if user.groups.first == '一般民眾' %}
+          <div class="form-group mb-4">
+            <span class="text-red-500">{{ form.unit.errors }}</span>
+            <label for="unit">單位</label>
+            <input 
+              type="text" id="unit" name="unit" value=""
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+            />
+          </div>
+
+          <div class="form-group mb-4">
+            <span class="text-red-500">{{ form.id_no.errors }}</span>
+            <label for="id_no">身分證字號</label>
+            <input 
+              type="text" id="id_no" name="id_no" value=""
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+            />
+          </div>
+          {% else %}
+          <div class="form-group mb-4">
+            <span class="text-red-500">{{ form.unit.errors }}</span>
+            <label for="unit">單位</label>
+            <input 
+              type="text" id="unit" name="unit" value=""
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+              readonly
+            />
+          </div>
+          <div class="form-group mb-4">
+            <span class="text-red-500">{{ form.title.errors }}</span>
+            <label for="title">職稱</label>
+            <input 
+              type="text" id="title" name="title" value=""
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+            />
+          </div>
+
+          <div class="form-group mb-4">
+            <span class="text-red-500">{{ form.id_no.errors }}</span>
+            <label for="id_no">權限</label>
+            <input 
+              type="text" id="id_no" name="id_no" value=""
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+              readonly
+            />
+          </div>
+
+          {% endif %}
+
+          <div class="form-group mb-4">
+            <span class="text-red-500">{{ form.contact_no.errors }}</span>
+            <label for="contact_no">電話(分機)</label>
+            <input 
+              type="text" id="contact_no" name="contact_no" value="{{ user.profile.contact_no }}"
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+            />
+          </div>
+
+          <div class="form-group mb-4">
+            <span class="text-red-500">{{ form.mobile_no.errors }}</span>
+            <label for="mobile_no">手機</label>
+            <input 
+              type="text" id="mobile_no" name="mobile_no" value="{{ user.profile.mobile_no }}"
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+            />
+          </div>
+
+          <div class="form-group mb-4">
+            <span class="text-red-500">{{ form.fax_no.errors }}</span>
+            <label for="fax_no">傳真</label>
+            <input 
+              type="text" id="fax_no" name="fax_no" value="{{ user.profile.fax_no }}"
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+            />
+          </div>
+    
+          <div class="form-group mb-4">
+            <span class="text-red-500">{{ form.email.errors }}</span>
+            <label for="email">電子信箱</label>
+            <input 
+              type="email" id="email" name="email" value="{{ user.email }}"
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+              required
+            />
+          </div>
+    
+          <div class="form-group mb-4">
+            <span class="text-red-500">{{ form.address.errors }}</span>
+            <label for="address">聯絡地址</label>
+            <input 
+              type="text" id="address" name="address" value="{{ user.profile.address }}"
+              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 rounded-lg" 
+              maxlength="100"
+            />
+          </div>
+    
+          {% include "user/add_vessel.html" %}
+      
+
+          <div class="flex justify-center my-6">
+            <button type="submit" class="rounded-full p-3 w-full sm:w-56 bg-gradient-to-r from-sky-600 to-teal-300 text-white text-lg font-semibold" >
+              修改
+            </button>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+{% endblock content %}
+

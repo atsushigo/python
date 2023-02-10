@@ -1,0 +1,187 @@
+{% extends "user/base.html" %}
+{% block content %} 
+<div class="w-full min-h-screen bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-4 flex justify-center" >
+  <div class="bg-white py-6 sm:px-10 px-5 w-full">
+  
+    <h2 class="text-2xl font-semibold text-center text-sky-600 mb-5">最新公告</h2>
+  
+    <div class="pb-4">
+      <form>
+        <div class="sm:grid sm:grid-cols-2 content-between justify-items-center lg:px-48">
+          <div class="form-group mb-2">
+            <label class="inline">公告日期起始</label>
+            <input type="date" class="focus:outline-none border-b lg:w-48 w-44 pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />
+          </div>
+  
+          <div class="form-group mb-2">
+            <label class="inline">公告日期結束</label>
+            <input type="date" class="focus:outline-none border-b lg:w-48 w-44 pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />
+          </div>
+
+          <div class="form-group mb-2 mt-2">
+            <label class="inline">&emsp;&emsp;公告類別</label>
+            <select id="port" class="focus:outline-none border-b lg:w-48 w-44 pb-2 border-sky-400 placeholder-gray-500 rounded-lg">
+              <option selected>請選擇公告類別</option>
+              <option value="">公告類別1</option>
+              <option value="">公告類別2</option>
+              <option value="">公告類別3</option>
+            </select>
+          </div>
+
+          <div class="form-group mb-2 mt-2">
+            <label class="inline">&emsp;&emsp;發布單位</label>
+            <select id="county" class="focus:outline-none border-b lg:w-48 w-44 pb-2 border-sky-400 placeholder-gray-500 rounded-lg">
+              <option selected>請選擇發布單位</option>
+              <option value="">行政院農委會漁業署</option>
+              <option value="">海洋委員會海巡署</option>
+              <option value="">基隆市政府</option>
+              <option value="">宜蘭縣政府</option>
+              <option value="">新竹市政府</option>
+              <option value="">台中市政府</option>
+              <option value="">台南市政府</option>
+              <option value="">高雄市政府</option>
+              <option value="">屏東縣政府</option>
+            </select>
+          </div>
+
+          
+          <div class="flex justify-center mt-4 col-span-2">
+            <button type="button" onclick="" class="text-white bg-gray-500 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-600 dark:border-gray-600">所有</button>
+            <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">搜尋</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="overflow-x-auto relative shadow-md sm:rounded-lg ">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 hidden sm:inline-table">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th scope="col" class="py-3 px-6">
+              #
+            </th>
+            <th scope="col" class="py-3 px-6">
+              公告類型
+            </th>
+            <th scope="col" class="py-3 px-6">
+              公告標題
+            </th>
+            <th scope="col" class="py-3 px-6">
+              公告日期
+            </th>
+            <th scope="col" class="py-3 px-6">
+              發布單位
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for new in news %}
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+                {{ forloop.counter }}
+            </th>
+            <th class="py-4 px-6">
+                <span class="bg-{{ new.color }}-500 rounded-lg p-3 w-4/5 h-full inline-flex justify-center text-white">{{ new.type }}</span>
+            </th>
+            <td class="py-4 px-6">
+                <a href="/user/new">{{ new.title }}</a>
+            </td>
+            <td class="py-4 px-6">
+                {{ new.date }}
+            </td>
+            <td class="py-4 px-6">
+                {{ new.unit }}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 sm:hidden">
+        <tbody>
+          {% for new in news %}
+            <tr class="border-b border-t border-gray-400 dark:border-gray-700">
+                <th scope="row" class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap bg-blue-100 dark:text-white dark:bg-gray-800 w-1/12">
+                    項次
+                </th>
+                <td class="py-4 px-2">
+                    {{ forloop.counter }}
+                </td>
+            </tr>
+            <tr class="border-b border-gray-400 dark:border-gray-700">
+                <th scope="row" class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap bg-blue-100 dark:text-white dark:bg-gray-800 w-1/12">
+                    公告類型
+                </th>
+                <td class="py-4 px-2">
+                    <span class="bg-{{ new.color }}-500 rounded-lg p-1 w-2/5 h-full inline-flex justify-center text-white">{{ new.type }}</span>
+                </td>
+            </tr>
+            <tr class="border-b border-gray-400 dark:border-gray-700">
+                <th scope="row" class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap bg-blue-100 dark:text-white dark:bg-gray-800 w-1/12">
+                    公告標題
+                </th>
+                <td class="py-4 px-2">
+                    <a href="/user/new">{{ new.title }}</a>
+                </td>
+            </tr>
+            <tr class="border-b border-gray-400 dark:border-gray-700">
+                <th scope="row" class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap bg-blue-100 dark:text-white dark:bg-gray-800 w-1/12">
+                    公告日期
+                </th>
+                <td class="py-4 px-2">
+                    {{ new.date }}
+                </td>
+            </tr>
+            <tr class="border-b border-gray-400 dark:border-gray-700">
+                <th scope="row" class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap bg-blue-100 dark:text-white dark:bg-gray-800 w-1/12">
+                    發布單位
+                </th>
+                <td class="py-4 px-2">
+                    {{ new.unit }}
+                </td>
+            </tr>
+            <tr>
+                <th colspan=2 class="h-4"></th>
+            </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+      
+    </div>
+    <nav class="sm:flex justify-between items-center pt-4" aria-label="Table navigation">
+      <span class="text-sm font-normal text-gray-500 dark:text-gray-400">顯示 <span class="font-semibold text-gray-900 dark:text-white">1-10</span> 共有 <span class="font-semibold text-gray-900 dark:text-white">1000</span> 筆資料</span>
+      <ul class="inline-flex items-center -space-x-px">
+          <li>
+              <a href="#" class="block py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                  <span class="sr-only">Previous</span>
+                  <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              </a>
+          </li>
+          <li>
+            <a href="#" aria-current="page" class="z-10 py-2 px-3 leading-tight text-blue-600 bg-blue-50 border border-blue-300 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">1</a>
+          </li>
+          <li>
+              <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+          </li>
+          <li>
+            <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">3</a>
+          </li>
+          <li>
+              <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">...</a>
+          </li>
+          <li>
+              <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">100</a>
+          </li>
+          <li>
+              <a href="#" class="block py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                  <span class="sr-only">Next</span>
+                  <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+              </a>
+          </li>
+      </ul>
+    </nav>
+    
+
+  </div>
+</div>
+     
+{% endblock content %}
+

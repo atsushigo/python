@@ -1,0 +1,383 @@
+{% extends "vmip/base.html" %}
+{% block content %} 
+<div class="w-full min-h-[80vh] bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-4 flex justify-center" >
+  <div class="bg-white py-6 px-10 w-full">
+  
+    <h2 class="text-2xl font-semibold text-center text-sky-600 mb-5">長期停泊船舶統計</h2>
+  
+    <div class="">
+      <form>
+        <div class="grid sm:grid-cols-5 grid-cols-1 items-center justify-items-stretch">
+          <div class="form-group mb-2 col-start-2 justify-self-end">
+            <label>縣市</label>
+            <select id="county" class="focus:outline-none border-b mb-2 w-60 pb-2 border-sky-400 placeholder-gray-500 rounded-lg">
+              <option selected>請選擇縣市</option>
+              <option value="">基隆市</option>
+              <option value="">宜蘭縣</option>
+              <option value="">新竹市</option>
+              <option value="">台中市</option>
+              <option value="">台南市</option>
+              <option value="">高雄市</option>
+              <option value="">屏東縣</option>
+            </select>
+          </div>
+  
+          <div class="form-group mb-2 justify-self-end">
+            <label>漁港</label>
+            <select id="port" class="focus:outline-none border-b mb-2 w-60 pb-2 border-sky-400 placeholder-gray-500 rounded-lg">
+              <option selected>請選擇漁港</option>
+              <option value="">八斗子漁港</option>
+              <option value="">正濱漁港</option>
+              <option value="">烏石漁港</option>
+              <option value="">南方澳漁港</option>
+              <option value="">新竹漁港</option>
+              <option value="">梧棲漁港</option>
+              <option value="">安平漁港</option>
+              <option value="">前鎮漁港</option>
+              <option value="">東港漁港</option>
+            </select>
+          </div>
+          <div class="form-group mb-2 justify-self-end">
+              <label for="above" class="mr-2">閒置時間(天)</label>
+          </div>
+          <div class="form-group mb-4">
+              <input id="above" type="radio" name="radio" value="above" class="" checked>
+              
+              <input type="text" class="focus:outline-none w-14 border-b placeholder-gray-500 rounded-lg p-1 ml-2" />
+              <label>天&emsp;以上</label>
+          </div>
+          <div class="form-group mb-4 col-start-5">
+            <input id="interval" type="radio" name="radio" value="interval" class="">
+            <input type="text" class="focus:outline-none w-14 border-b placeholder-gray-500 rounded-lg p-1 ml-2" />
+            <label>天&emsp;至</label>
+            <input type="text" class="focus:outline-none w-14 border-b placeholder-gray-500 rounded-lg p-1 ml-2" />
+            <label>天</label>
+        </div>
+        </div>
+      </form>
+      <div class="grid grid-cols-5 justify-items-stretch">
+        <div class="col-start-1 col-lg-6 mt-8 flex flex-row items-end justify-self-end">
+          <a href="/vmip/edit-comment" class="text-blue-700 text-sm font-bold">編輯註記內容</a>
+        </div>
+        <div class="col-start-3 col-lg-6 mt-8 mb-4 flex flex-row justify-center">
+          <button type="submit" class="px-2 py-1 bg-pink-300 rounded text-white mr-4 ml-6">查詢</button>
+        </div>
+      </div>
+    </div>
+    <div class="overflow-x-auto relative shadow-md sm:rounded-lg w-full">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-base font-bold text-gray-700 uppercase bg-teal-200 dark:bg-teal-700 dark:text-gray-400">
+          <tr>
+            <th scope="col" class="py-3 px-6">
+              縣市
+            </th>
+            <th scope="col" class="py-3">
+              註記
+            </th>
+            <th scope="col" class="py-3 px-6">
+              漁港
+            </th>
+            <th scope="col" class="py-3 px-6">
+              船名
+            </th>
+            <th scope="col" class="py-3 px-6">
+              閒置時間
+            </th>
+            <th scope="col" class="py-3">
+              
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              基隆市
+            </th>
+            <th class="py-4">
+              <select id="county" class="focus:outline-none border-b w-30  border-sky-400 placeholder-gray-500 rounded-lg">
+                <option >請選擇註記</option>
+                <option value="">法院沒入</option>
+                <option value="">涉案扣押</option>
+                <option value="" selected>執照過期</option>
+                <option value="">休漁</option>
+                <option value="">其他</option>
+              </select>
+            </th>
+            <th class="py-4 px-6">
+              八斗子漁港
+            </th>
+            <th class="py-4 px-6">
+              測試號
+            </th>
+            <th class="py-4 px-6">
+              480天
+            </th>
+            <th class="py-4 ">
+              <button type="button" onclick="location.href='/vmip/boat_details';" class="text-white bg-indigo-500 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-600 dark:border-gray-600">檢視</button>
+            </th>
+          </tr>
+
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              基隆市
+            </th>
+            <th class="py-4">
+              <select id="county" class="focus:outline-none border-b w-30  border-sky-400 placeholder-gray-500 rounded-lg">
+                <option>請選擇註記</option>
+                <option value="">法院沒入</option>
+                <option value="">涉案扣押</option>
+                <option value="">執照過期</option>
+                <option value="">休漁</option>
+                <option value="" selected>其他</option>
+              </select>
+            </th>
+            <th class="py-4 px-6">
+              八斗子漁港
+            </th>
+            <th class="py-4 px-6">
+              測試號
+            </th>
+            <th class="py-4 px-6">
+              475天
+            </th>
+            <th class="py-4 ">
+              <button type="button" onclick="location.href='/vmip/boat_details';" class="text-white bg-indigo-500 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-600 dark:border-gray-600">檢視</button>
+            </th>
+          </tr>
+
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              宜蘭縣
+            </th>
+            <th class="py-4">
+              <select id="county" class="focus:outline-none border-b w-30  border-sky-400 placeholder-gray-500 rounded-lg">
+                <option>請選擇註記</option>
+                <option value="">法院沒入</option>
+                <option value="" selected>涉案扣押</option>
+                <option value="">執照過期</option>
+                <option value="">休漁</option>
+                <option value="">其他</option>
+              </select>
+            </th>
+            <th class="py-4 px-6">
+              烏石漁港
+            </th>
+            <th class="py-4 px-6">
+              測試號
+            </th>
+            <th class="py-4 px-6">
+              468天
+            </th>
+            <th class="py-4 ">
+              <button type="button" onclick="location.href='/vmip/boat_details';" class="text-white bg-indigo-500 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-600 dark:border-gray-600">檢視</button>
+            </th>
+          </tr>
+
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              宜蘭縣
+            </th>
+            <th class="py-4">
+              <select id="county" class="focus:outline-none border-b w-30  border-sky-400 placeholder-gray-500 rounded-lg">
+                <option selected>請選擇註記</option>
+                <option value="">法院沒入</option>
+                <option value="">涉案扣押</option>
+                <option value="">執照過期</option>
+                <option value="">休漁</option>
+                <option value="">其他</option>
+              </select>
+            </th>
+            <th class="py-4 px-6">
+              南方澳漁港
+            </th>
+            <th class="py-4 px-6">
+              測試號
+            </th>
+            <th class="py-4 px-6">
+              459天
+            </th>
+            <th class="py-4 ">
+              <button type="button" onclick="location.href='/vmip/boat_details';" class="text-white bg-indigo-500 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-600 dark:border-gray-600">檢視</button>
+            </th>
+          </tr>
+
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              新竹市
+            </th>
+            <th class="py-4">
+              <select id="county" class="focus:outline-none border-b w-30  border-sky-400 placeholder-gray-500 rounded-lg">
+                <option>請選擇註記</option>
+                <option value="" selected>法院沒入</option>
+                <option value="">涉案扣押</option>
+                <option value="">執照過期</option>
+                <option value="">休漁</option>
+                <option value="">其他</option>
+              </select>
+            </th>
+            <th class="py-4 px-6">
+              新竹漁港
+            </th>
+            <th class="py-4 px-6">
+              測試號
+            </th>
+            <th class="py-4 px-6">
+              451天
+            </th>
+            <th class="py-4 ">
+              <button type="button" onclick="location.href='/vmip/boat_details';" class="text-white bg-indigo-500 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-600 dark:border-gray-600">檢視</button>
+            </th>
+          </tr>
+
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              台中市
+            </th>
+            <th class="py-4">
+              <select id="county" class="focus:outline-none border-b w-30  border-sky-400 placeholder-gray-500 rounded-lg">
+                <option>請選擇註記</option>
+                <option value="">法院沒入</option>
+                <option value="">涉案扣押</option>
+                <option value="" selected>執照過期</option>
+                <option value="">休漁</option>
+                <option value="">其他</option>
+              </select>
+            </th>
+            <th class="py-4 px-6">
+              梧棲漁港
+            </th>
+            <th class="py-4 px-6">
+              測試號
+            </th>
+            <th class="py-4 px-6">
+              423天
+            </th>
+            <th class="py-4 ">
+              <button type="button" onclick="location.href='/vmip/boat_details';" class="text-white bg-indigo-500 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-600 dark:border-gray-600">檢視</button>
+            </th>
+          </tr>
+
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              台南市
+            </th>
+            <th class="py-4">
+              <select id="county" class="focus:outline-none border-b w-30  border-sky-400 placeholder-gray-500 rounded-lg">
+                <option>請選擇註記</option>
+                <option value="" selected>法院沒入</option>
+                <option value="">涉案扣押</option>
+                <option value="">執照過期</option>
+                <option value="">休漁</option>
+                <option value="">其他</option>
+              </select>
+            </th>
+            <th class="py-4 px-6">
+              安平漁港
+            </th>
+            <th class="py-4 px-6">
+              測試號
+            </th>
+            <th class="py-4 px-6">
+              405天
+            </th>
+            <th class="py-4 ">
+              <button type="button" onclick="location.href='/vmip/boat_details';" class="text-white bg-indigo-500 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-600 dark:border-gray-600">檢視</button>
+            </th>
+          </tr>
+
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              高雄市
+            </th>
+            <th class="py-4">
+              <select id="county" class="focus:outline-none border-b w-30  border-sky-400 placeholder-gray-500 rounded-lg">
+                <option>請選擇註記</option>
+                <option value="">法院沒入</option>
+                <option value="" selected>涉案扣押</option>
+                <option value="">執照過期</option>
+                <option value="">休漁</option>
+                <option value="">其他</option>
+              </select>
+            </th>
+            <th class="py-4 px-6">
+              前鎮漁港
+            </th>
+            <th class="py-4 px-6">
+              測試號
+            </th>
+            <th class="py-4 px-6">
+              380天
+            </th>
+            <th class="py-4 ">
+              <button type="button" onclick="location.href='/vmip/boat_details';" class="text-white bg-indigo-500 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-600 dark:border-gray-600">檢視</button>
+            </th>
+          </tr>
+
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              屏東縣
+            </th>
+            <th class="py-4">
+              <select id="comment" class="focus:outline-none border-b w-30  border-sky-400 placeholder-gray-500 rounded-lg">
+                <option >請選擇註記</option>
+                <option value="">法院沒入</option>
+                <option value="">涉案扣押</option>
+                <option value="" selected>執照過期</option>
+                <option value="">休漁</option>
+                <option value="">其他</option>
+              </select>
+            </th>
+            <th class="py-4 px-6">
+              東港漁港
+            </th>
+            <th class="py-4 px-6">
+              測試號
+            </th>
+            <th class="py-4 px-6">
+              368天
+            </th>
+            <th class="py-4 ">
+              <button type="button" onclick="location.href='/vmip/boat_details';" class="text-white bg-indigo-500 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-600 dark:border-gray-600">檢視</button>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>
+    <nav class="flex justify-between items-center pt-4" aria-label="Table navigation">
+      <span class="text-sm font-normal text-gray-500 dark:text-gray-400">顯示 <span class="font-semibold text-gray-900 dark:text-white">1-10</span> 共有 <span class="font-semibold text-gray-900 dark:text-white">1000</span> 筆資料</span>
+      <ul class="inline-flex items-center -space-x-px">
+          <li>
+              <a href="#" class="block py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                  <span class="sr-only">Previous</span>
+                  <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              </a>
+          </li>
+          <li>
+            <a href="#" aria-current="page" class="z-10 py-2 px-3 leading-tight text-blue-600 bg-blue-50 border border-blue-300 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">1</a>
+          </li>
+          <li>
+              <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+          </li>
+          <li>
+            <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">3</a>
+          </li>
+          <li>
+              <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">...</a>
+          </li>
+          <li>
+              <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">100</a>
+          </li>
+          <li>
+              <a href="#" class="block py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                  <span class="sr-only">Next</span>
+                  <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+              </a>
+          </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+     
+{% endblock content %}
+

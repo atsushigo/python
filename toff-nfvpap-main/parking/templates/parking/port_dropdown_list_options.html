@@ -1,0 +1,5 @@
+<option>請選擇港口
+    {% for p in ports %}
+    <option value="{{ p.id }}">{{ p.name }}</option>
+    {% endfor %}
+</option>

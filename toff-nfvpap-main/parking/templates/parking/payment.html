@@ -1,0 +1,279 @@
+{% extends "user/base.html" %}
+{% block content %} 
+<div class="w-full min-h-screen bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-4 flex items-center justify-center" >
+    <div class="bg-white py-6 px-2 sm:max-w-md w-full ">
+        <h2 class="sm:text-3xl text-2xl font-semibold text-center text-sky-600 mb-5">停泊漁港-繳費頁面</h2><br>
+        <p class="text-base">停泊區域：
+            <span class="text-base font-bold text-red-600">浮動碼頭
+                <br>
+                <p class="text-base font-bold text-red-600">&emsp;&emsp;&emsp;&emsp;&emsp;15公尺(新台幣六百元/日)</p>
+            </span>
+        </p>
+        <p class="text-base mt-2">申請天數：<span class="text-base font-bold text-red-600">自2022-11-05至2023-01-15<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;（共72日）</span></p>
+        <p class="mt-2">繳費方式：<span class="text-lg font-bold text-red-600">
+            ⬛️月繳
+        </span></p>
+        <p>應繳費用：<br></p>
+        <hr class="mt-2 border border-red-500 border-dashed">
+        <p class="font-bold my-2">
+            第一期：2022-11-05至2022-11-30
+            <p class="text-base font-bold text-red-600">
+                新臺幣15,600元(600元 X 26日)<br>
+                繳費期限：2022-11-05前
+            </p>
+        </p>
+        <hr class="mt-2 border border-red-500 border-dashed">
+        <p class="font-bold my-2">
+            第二期：2022-12-01至2022-12-31
+            <p class="text-base font-bold text-red-600">
+                新臺幣18,600元(600元 X 31日)<br>
+                繳費期限：2022-11-30前
+            </p>
+        </p>
+        <hr class="mt-2 border border-red-500 border-dashed">
+        <p class="font-bold my-2">
+            第三期：2023-01-01至2023-01-15
+            <p class="text-base font-bold text-red-600">
+                新臺幣9,000元(600元 X 15日)<br>
+                繳費期限：2022-12-31前
+            </p>
+        </p>
+        <hr class="mt-2 border border-red-500 border-dashed">
+        <br>
+        <!-- 繳費須知 -->
+        <div>
+            <div class="text-red-500 font-bold">
+                注意：
+                <ul class="list-decimal ml-4">
+                    <li>
+                        請於進港前繳納停泊費用，逾期未繳將產生滯納金。
+                    </li>
+                    <li>
+                        逾期30天未繳將開始計算利息。請申請人注意繳費期限！
+                    </li>
+                </ul>
+            </div>
+            <br>
+            <div>
+                <span class="font-bold">繳費單開立方法</span>（
+                <button data-collapse-toggle="bill" class="text-blue-700 visited:text-purple-600" type="button" >             
+                    <div class="inline-block">點擊詳閱</div>
+                </button>
+                ）
+                <div id="bill" class="hidden">
+                    <ul class="list-decimal ml-4 text-sm">
+                        <li>
+                            第一期繳費單於核准時開立。
+                        </li>
+                        <li>
+                            第二期起之繳費單，於前月二十日開立，遇假日則順延開立。
+                        </li>
+                        <li>
+                            最後一期繳費單開立後至核定離港所餘日數未超過十日者，。併入前一期開立
+                        </li>
+                    </ul>
+                    <br>
+                </div>
+            </div>
+            <div>
+                <span class="font-bold">第一類漁港遊艇停泊費收費標準</span>（
+                <button data-collapse-toggle="charges" class="text-blue-700 visited:text-purple-600" type="button" >             
+                    <div class="inline-block">點擊詳閱</div>
+                </button>
+                ）<br>
+                <div id="charges" class="hidden">
+                    <span class="text-sm">
+                        遊艇停泊第一類漁港或各類船舶停泊第一類漁港遊艇泊區，其每日停泊費收費基準如下：
+                    </span>
+                    <ul class="list-inside text-sm ml-7" style="list-style:cjk-ideographic">
+                        <li>
+                            浮動碼頭以船席計算：
+                            <ul class="list-none">
+                                <li>
+                                    （一）十公尺：新臺幣四百元。
+                                </li>
+                                <li>
+                                    （二）十五公尺：新臺幣六百元。
+                                </li>
+                                <li>
+                                    （三）十八公尺：新臺幣七百二十元。
+                                </li>
+                                <li>
+                                    （四）二十公尺：新臺幣八百元。
+                                </li>
+                                <li>
+                                    （五）三十公尺：新臺幣一千五百元。
+                                </li>
+                            </ul>
+                        </li>
+                        <br>
+                        <li>
+                            以船舶平行岸壁碼頭停泊者，以船舶全長（Length Overall；LOA）計算，且長度以公尺為最小單位，未滿一公尺者，以一公尺計：
+                            <ul class="list-none brackets_number" >
+                                <li class="flex">
+                                    <span>（一）</span>
+                                    十公尺以下：新臺幣二百元。
+                                </li>
+                                <li class="flex">
+                                    <span>（二）</span>
+                                    超過十公尺至二十公尺以下：每公尺新臺幣二十元。
+                                </li>
+                                <li class="flex">
+                                    <span>（三）</span>
+                                    超過二十公尺至三十公尺以下：每公尺新臺幣二十五元。
+                                </li>
+                                <li class="flex">
+                                    <span>（四）</span>
+                                    超過三十公尺至五十公尺以下：每公尺新臺幣三十五元。
+                                </li>
+                                <li class="flex">
+                                    <span>（五）</span>
+                                    超過五十公尺：每公尺新臺幣五十。
+                                </li>
+                            </ul>
+                        </li>
+                        <br>
+                        <li>
+                            以船舶垂直岸壁碼頭停泊者，以船寬五公尺以下為限，每船新臺幣一百元。
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <br>
+            <div class="flex">
+                <input id="agree" type="checkbox" class="mt-1 w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="agree" class="ml-2  font-medium text-gray-900 dark:text-gray-300">本人已詳閱並且同意
+                    <button data-collapse-toggle="bill" class="text-blue-700 visited:text-purple-600" type="button" >             
+                        <div class="inline-block font-bold">繳費單開立方法</div>
+                    </button>
+                    ，與
+                    <button data-collapse-toggle="charges" class="text-blue-700 visited:text-purple-600" type="button" >             
+                        <div class="inline-block font-bold">第一類漁港遊艇停泊費收費標準</div>
+                    </button>
+                    。
+                </label>
+            </div>
+        </div>   
+        <!-- 付款方式 -->
+        <div class="mt-4">付款方式：</div>
+        <div class="grid grid-cols-2 gap-4">
+            <div class="flex items-center mb-4 flex-wrap">
+                <input id="ck_ATM" type="checkbox" name="payment" onclick="showAndHide(this, 'ATM')" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="ck_ATM" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">ATM轉帳</label><br>
+                <div class="flex items-center mb-4">
+                    <img class="w-9/12" src="/static/images/atm.png" alt="">
+                </div>
+            </div>
+            <div class="flex items-center mb-4 ml-2 flex-wrap">
+                <input id="ck_cash" type="checkbox" name="payment" onclick="showAndHide(this, 'cash')" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="ck_cash" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">現金繳費</label>
+                <div class="flex items-center mb-4 mt-1">
+                    <img class="w-4/5" src="/static/images/cash.png" alt="">
+                </div>
+            </div>
+        </div>
+        <br>
+        
+        <div class="hidden overflow-x-auto relative shadow-md sm:rounded-lg" id="ATM">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <tbody>
+                    <tr class="border-b border-gray-400 dark:border-gray-700">
+                        <th scope="row" class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap bg-blue-100 dark:text-white dark:bg-gray-800">
+                            銀行代碼
+                        </th>
+                        <td class="py-4 px-2">
+                            004-台灣銀行
+                        </td>
+                    </tr>
+                    <tr class="border-b border-gray-400 dark:border-gray-700">
+                        <th scope="row" class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap bg-blue-100 dark:text-white dark:bg-gray-800">
+                            銀行帳號
+                        </th>
+                        <td class="py-4 px-2">
+                            1234567890123456
+                        </td>
+                    </tr>
+                    <tr class="border-b border-gray-400 dark:border-gray-700">
+                        <th scope="row" class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap bg-blue-100 dark:text-white dark:bg-gray-800">
+                            應繳金額
+                        </th>
+                        <td class="py-4 px-2">
+                            <span class="font-bold text-red-600">
+                                $15,600
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="border-b border-gray-400 dark:border-gray-700">
+                        <th scope="row" class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap bg-blue-100 dark:text-white dark:bg-gray-800">
+                            繳費期限
+                        </th>
+                        <td class="py-4 px-2">
+                            <span class="font-bold text-red-600">2022年11月5日以前</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="flex justify-center mt-4">
+                <button type="button" onclick="history.go(-1)" class="text-white bg-gray-500 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-600 dark:border-gray-600">返回上一頁</button>
+                <button type="button" onclick="checkAgree()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">確認送出</button>
+            </div>
+        </div>
+
+        <div class="hidden overflow-x-auto relative shadow-md sm:rounded-lg" id="cash">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <tbody>
+                    <tr class="border-b border-gray-400 dark:border-gray-700">
+                        <th scope="row" class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap bg-blue-100 dark:text-white dark:bg-gray-800">
+                            應繳金額
+                        </th>
+                        <td class="py-4 px-2">
+                            <span class="font-bold text-red-600">
+                                $15,600
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="border-b border-gray-400 dark:border-gray-700">
+                        <th scope="row" class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap bg-blue-100 dark:text-white dark:bg-gray-800">
+                            繳費期限
+                        </th>
+                        <td class="py-4 px-2">
+                            <span class="font-bold text-red-600">2022年11月5日以前</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="flex justify-center mt-4">
+                <button type="button" onclick="history.go(-1)" class="text-white bg-gray-500 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-600 dark:border-gray-600">返回上一頁</button>
+                <button type="button" onclick="checkAgree()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">確認送出</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showAndHide(checkbox, name) {
+        let checkboxes = document.getElementsByName('payment') 
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+
+        const payment_method = ['ATM', 'cash'];
+
+        payment_method.forEach((element) => {
+            $(`#${element}`).hide();
+        })
+        $(`#${name}`).show();
+    }
+
+    function checkAgree() {
+        let agree = $('#agree').is(":checked");
+        if(!agree) {
+            alert('請先閱讀並同意繳費單開立方法 ，與第一類漁港遊艇停泊費收費標準。');
+        }
+    }
+</script>
+
+{% endblock content %}
+

@@ -1,0 +1,364 @@
+{% extends "vmip/base.html" %}
+{% block content %} 
+<div class="w-full min-h-screen bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-4 flex justify-center" >
+  <div class="bg-white py-6 px-10 w-full">
+  
+    <h2 class="text-2xl font-semibold text-center text-sky-600 mb-5">船舶進出港明細</h2>
+  
+    <div class="pb-4">
+      <form>
+        <div class="grid sm:grid-cols-3 grid-cols-1 justify-items-end">
+          <div class="mb-4 mr-28">
+            <input id="entry_port" type="radio" name="inward_outwardd" value="entry_port" class="">
+            <label for="entry_port" class="mr-2 text-sm font-medium text-gray-900 dark:text-gray-300">進港</label>
+            
+            <input id="leave_port" type="radio" name="inward_outwardd" value="leave_port" class="">
+            <label for="leave_port" class="mr-2 text-sm font-medium text-gray-900 dark:text-gray-300">出港</label>
+            
+            <input id="all" type="radio" name="inward_outwardd" value="all" class="">
+            <label for="all" class="mr-2 text-sm font-medium text-gray-900 dark:text-gray-300">所有</label>
+          </div>
+          
+          <div class="form-group mb-2 ml-4 col-start-3">
+            <div class="mr-20">是否顯示</div>
+          </div>
+        </div>
+        <div class="grid sm:grid-cols-3 grid-cols-1 justify-items-center">
+          <div class="form-group mb-2">
+            <label>日期起始</label>
+            <input type="date" id="start_date" class="w-[15.3rem] focus:outline-none border-b pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />
+          </div>
+  
+          <div class="form-group mb-2">
+            <label>&emsp;縣市</label>
+            <select id="county" class="focus:outline-none border-b mb-2 w-[15.3rem] pb-2 border-sky-400 placeholder-gray-500 rounded-lg">
+              <option selected>請選擇縣市</option>
+              <option value="">基隆市</option>
+              <option value="">宜蘭縣</option>
+              <option value="">新竹市</option>
+              <option value="">台中市</option>
+              <option value="">台南市</option>
+              <option value="">高雄市</option>
+              <option value="">屏東縣</option>
+            </select>
+          </div>
+
+          <div class="form-group mb-2">
+            <label>&emsp;&emsp;&emsp;&emsp;船名</label>
+            <input type="text" class="focus:outline-none border-b pb-2 border-sky-400 placeholder-gray-500 rounded-lg w-[10rem]" />
+            <input id="" type="checkbox" name="check"  value="" checked class="ml-8 w-6 h-6 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+          </div>
+
+          <div class="form-group mb-2">
+            <label>日期結束</label>
+            <input type="date" id="end_date" min="" max="" class="w-[15.3rem] focus:outline-none border-b pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />
+          </div>
+
+          <div class="form-group mb-2">
+            <label>漁港別</label>
+            <select id="port" class="focus:outline-none border-b w-[15.3rem] pb-2 border-sky-400 placeholder-gray-500 rounded-lg">
+              <option selected>請選擇港口</option>
+              <option value="US">基隆市八斗子漁港</option>
+              <option value="CA">基隆市正濱漁港</option>
+              <option value="CA">宜蘭縣烏石漁港</option>
+              <option value="CA">宜蘭縣南方澳漁港</option>
+              <option value="CA">新竹市新竹漁港</option>
+              <option value="CA">台中市梧棲漁港</option>
+              <option value="CA">台南市安平漁港</option>
+              <option value="CA">高雄市前鎮漁港</option>
+              <option value="CA">屏東縣東港漁港</option>
+            </select>
+          </div>
+
+          
+          <div class="form-group mb-2">
+            <label>&emsp;&emsp;漁船編號</label>
+            <input type="text" class="focus:outline-none border-b pb-2 border-sky-400 placeholder-gray-500 rounded-lg w-[10rem]" />
+            <input id="" type="checkbox" name="check"  value="" checked class="ml-8 w-6 h-6 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+          </div>
+
+          <div class="form-group mb-2">
+            <label class="text-red-500 font-bold">限制輸入一年區間日期</label>
+          </div>
+          
+          <div class="form-group mb-2 col-start-3">
+            <label>&emsp;&emsp;船舶號數</label>
+            <input type="text" class="focus:outline-none border-b pb-2 border-sky-400 placeholder-gray-500 rounded-lg w-[10rem]" />
+            <input id="" type="checkbox" name="check"  value="" class="ml-8 w-6 h-6 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+          </div>
+          
+          <div class="form-group mb-2 col-start-3 ml-1">
+            <label>&emsp;&emsp;&emsp;MMSI</label>
+            <input type="text" class="focus:outline-none border-b pb-2 border-sky-400 placeholder-gray-500 rounded-lg w-[10rem]" />
+            <input id="" type="checkbox" name="check"  value="" class="ml-8 w-6 h-6 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+          </div>
+          
+          <div class="form-group mb-2 col-start-3">
+            <label>&emsp;&emsp;&emsp;&emsp;IMO</label>
+            <input type="text" class="focus:outline-none border-b pb-2 border-sky-400 placeholder-gray-500 rounded-lg w-[10rem]" />
+            <input id="" type="checkbox" name="check"  value="" class="ml-8 w-6 h-6 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+          </div>
+
+        </div>
+      </form>
+      <div class="col-lg-6 mt-8 flex flex-row justify-center">
+          <button type="submit" class="px-2 py-1 bg-pink-300 rounded text-white mr-4 ml-6">查詢</button>
+      </div>
+    </div>
+    <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th scope="col" class="py-3 px-6">
+              #
+            </th>
+            <th scope="col" class="py-3 px-6">
+              船名
+            </th>
+            <th scope="col" class="py-3 px-6">
+              漁船編號
+            </th>
+            <th scope="col" class="py-3 px-6">
+              進港日期
+            </th>
+            <th scope="col" class="py-3 px-6">
+              進港港口
+            </th>
+            <th scope="col" class="py-3 px-6">
+              出港日期
+            </th>
+            <th scope="col" class="py-3 px-6">
+              出港港口
+            </th>
+            <th scope="col" class="py-3 px-6">
+              安檢紀錄
+            </th>
+            <th scope="col" class="py-3 px-6">
+              VMS
+            </th>
+            <th scope="col" class="py-3 px-6">
+              AIS
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              1
+            </th>
+            <th class="py-4 px-6">
+              測試1號
+            </th>
+            <th class="py-4 px-6">
+              CT3-123456
+            </th>
+            <td class="py-4 px-6">
+              2022-12-10
+            </td>
+            <td class="py-4 px-6">
+              八斗子漁港
+            </td>
+            <td class="py-4 px-6">
+              2022-12-11
+            </td>
+            <td class="py-4 px-6">
+              八斗子漁港
+            </td>
+            <td class="py-4 px-6">
+              V
+            </td>
+            <td class="py-4 px-6">
+              V
+            </td>
+            <td class="py-4 px-6">
+              V
+            </td>
+          </tr>
+
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              2
+            </th>
+            <th class="py-4 px-6">
+              測試2號
+            </th>
+            <th class="py-4 px-6">
+              CT3-123456
+            </th>
+            <td class="py-4 px-6">
+              2022-12-10
+            </td>
+            <td class="py-4 px-6">
+              烏石漁港
+            </td>
+            <td class="py-4 px-6">
+              2022-12-11
+            </td>
+            <td class="py-4 px-6">
+              烏石漁港
+            </td>
+            <td class="py-4 px-6">
+              V
+            </td>
+            <td class="py-4 px-6">
+              V
+            </td>
+            <td class="py-4 px-6">
+              V
+            </td>
+          </tr>
+
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              3
+            </th>
+            <th class="py-4 px-6">
+              測試3號
+            </th>
+            <th class="py-4 px-6">
+              CT3-123456
+            </th>
+            <td class="py-4 px-6">
+              2022-12-10
+            </td>
+            <td class="py-4 px-6">
+              新竹漁港
+            </td>
+            <td class="py-4 px-6">
+              2022-12-11
+            </td>
+            <td class="py-4 px-6">
+              新竹漁港
+            </td>
+            <td class="py-4 px-6">
+              V
+            </td>
+            <td class="py-4 px-6">
+              V
+            </td>
+            <td class="py-4 px-6">
+              V
+            </td>
+          </tr>
+
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              4
+            </th>
+            <th class="py-4 px-6">
+              測試4號
+            </th>
+            <th class="py-4 px-6">
+              CT3-123456
+            </th>
+            <td class="py-4 px-6">
+              2022-12-10
+            </td>
+            <td class="py-4 px-6">
+              梧棲漁港
+            </td>
+            <td class="py-4 px-6">
+              2022-12-11
+            </td>
+            <td class="py-4 px-6">
+              梧棲漁港
+            </td>
+            <td class="py-4 px-6">
+              V
+            </td>
+            <td class="py-4 px-6">
+              V
+            </td>
+            <td class="py-4 px-6">
+              V
+            </td>
+          </tr>
+
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th class="py-4 px-6">
+              5
+            </th>
+            <th class="py-4 px-6">
+              測試5號
+            </th>
+            <th class="py-4 px-6">
+              CT3-123456
+            </th>
+            <td class="py-4 px-6">
+              2022-12-10
+            </td>
+            <td class="py-4 px-6">
+              前鎮漁港
+            </td>
+            <td class="py-4 px-6">
+              2022-12-11
+            </td>
+            <td class="py-4 px-6">
+              前鎮漁港
+            </td>
+            <td class="py-4 px-6">
+              V
+            </td>
+            <td class="py-4 px-6">
+              V
+            </td>
+            <td class="py-4 px-6">
+              V
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>
+    <nav class="flex justify-between items-center pt-4" aria-label="Table navigation">
+      <span class="text-sm font-normal text-gray-500 dark:text-gray-400">顯示 <span class="font-semibold text-gray-900 dark:text-white">1-30，</span>共有 <span class="font-semibold text-gray-900 dark:text-white">1000</span> 筆資料</span>
+      <ul class="inline-flex items-center -space-x-px">
+          <li>
+              <a href="#" class="block py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                  <span class="sr-only">Previous</span>
+                  <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              </a>
+          </li>
+          <li>
+            <a href="#" aria-current="page" class="z-10 py-2 px-3 leading-tight text-blue-600 bg-blue-50 border border-blue-300 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">1</a>
+          </li>
+          <li>
+              <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+          </li>
+          <li>
+            <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">3</a>
+          </li>
+          <li>
+              <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">...</a>
+          </li>
+          <li>
+              <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">100</a>
+          </li>
+          <li>
+              <a href="#" class="block py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                  <span class="sr-only">Next</span>
+                  <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+              </a>
+          </li>
+      </ul>
+    </nav>
+    
+    <div class="flex justify-center mt-4">
+        <button type="button" onclick="history.go(-1)" class="text-white bg-gray-500 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-600 dark:border-gray-600">返回上一頁</button>
+        <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">匯出詳細報表</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+    $("#start_date").on("change", function (event) {
+        let end_date = new Date(event.target.value);
+        end_date.setFullYear(end_date.getFullYear() + 1); 
+        
+        $("#end_date").attr('min', event.target.value);
+        $("#end_date").attr('max', end_date.toLocaleDateString('en-CA'));
+    })
+</script>
+{% endblock content %}
+

@@ -1,0 +1,65 @@
+{% extends "user/base.html" %}
+{% block content %} 
+<div class="w-full min-h-screen bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-4 flex justify-center" >
+        <div class="py-12 w-4/5">
+            <div class="mx-auto sm:px-6 lg:px-8">
+                <div class="rounded-lg bg-gray-300 p-4">
+                    <div class="bg-white rounded-lg md:pl-10 pl-4 pr-4 pb-2 pt-6">
+                        <p class="text-2xl font-semibold text-center text-sky-600 mb-5">最新消息新增</p>
+                    <div class="flex flex-col">
+                    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                        <div class="overflow-hidden">
+                        <form>
+                        <div class="grid grid-cols-3 justify-center">
+                            <div class="col-lg-6 mt-4 mr-0 text-left col-span-3">
+                                <label class="inline font-bold text-sm lg:text-lg ">公告主旨</label>
+                                <span class="font-bold text-sm xl:text-xl ml-2">:</span>
+                                <input type="text" class="focus:outline-none border-b w-56 pb-2 border-sky-400 placeholder-gray-500 rounded-lg" />
+                            </div>
+                            <div class="col-lg-6 mt-4 mr-0 text-left col-span-1">
+                                <label class="inline font-bold text-sm lg:text-lg ">公告類別</label>
+                                <span class="font-bold text-sm xl:text-xl ml-2">:</span>
+                                <select id="port" class="focus:outline-none border-b w-50 pb-2 border-sky-400 placeholder-gray-500 rounded-lg">
+                                    <option selected>請選擇公告類別</option>
+                                    <option value="">公告類別1</option>
+                                    <option value="">公告類別2</option>
+                                    <option value="">公告類別3</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6 mt-4 mr-0 text-left col-span-1">
+                                <label class="inline font-bold text-sm lg:text-lg ">公告日期</label>
+                                <span class="font-bold text-sm xl:text-xl ml-2">:</span>
+                                <input type="date" class="focus:outline-none border-b w-58 pb-2 border-sky-400 placeholder-gray-500 rounded-lg" /> 
+                            </div>
+                            <div class="col-lg-6 mt-4 mr-0 text-left col-span-1 ml-4">
+                                <label class="inline font-bold text-sm lg:text-lg ">編輯者</label>
+                                <span class="font-bold text-sm xl:text-xl ml-2 mr-2">:</span>管理者
+                            </div>
+                            <div class="col-lg-6 mr-0 text-left col-span-3">
+                                <a class="inline text-sm text-blue-400" href="/parking/add-new-type">點此新增公告類別</a>
+                            </div>
+                            <div class="col-lg-6 mt-4 mr-0 text-left col-span-3 ">
+                                <label  class="inline font-bold text-sm lg:text-lg ">內文</label>
+                                <span class="font-bold text-sm xl:text-xl ml-2">:</span>
+                                <!-- <JetInput type="text" v-model="form.description" class="form-control ml-2 p-1 md:w-[35rem] w-[8rem]" required /> -->
+                                <textarea class="w-full h-60"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mt-4 flex flex-row justify-center">
+                            <button type="button" onclick="history.go(-1)" class="px-2 py-1 bg-orange-300 rounded text-white mr-4">返回</button>
+                            <button type="submit" class="px-2 py-1 bg-pink-300 rounded text-white">確定編輯</button>
+                        </div>
+                        </form>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+{% endblock content %}
+
